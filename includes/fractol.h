@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 22:53:30 by baudiber          #+#    #+#             */
-/*   Updated: 2018/06/11 23:28:48 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/06/11 23:37:54 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,5 @@ void	init_all(t_setup *stp);
 void	fractol(t_setup *stp);
 void	display_splash(t_setup *stp);
 int		stp_key(int key, t_setup *stp);
-
 
 #endif
