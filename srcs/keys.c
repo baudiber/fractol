@@ -14,8 +14,12 @@
 
 int		stp_key(int key, t_setup *stp)
 {
-	(void)stp;
 	if (key == 53)
 		exit (0);
+	if (key == 49)
+	{
+		stp->mandelbrot = 1;
+		draw(stp);
+	}
 	return (0);
 }

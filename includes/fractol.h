@@ -32,11 +32,13 @@ struct s_setup
 	int		bpx;
 	int		s_line;
 	int		ed;
+	int		mandelbrot;
 };
 
 void	init_all(t_setup *stp);
 void	fractol(t_setup *stp);
 void	display_splash(t_setup *stp);
 int		stp_key(int key, t_setup *stp);
+void	draw(t_setup *stp);
 
 #endif

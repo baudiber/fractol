@@ -10,7 +10,8 @@ SRC			=	main.c \
 				init.c \
 				fractol.c \
 				splash.c \
-				keys.c
+				keys.c \
+				draw.c
 
 CC 			=	gcc
 FLAGS		=	-Wall -Werror -Wextra
