@@ -11,7 +11,8 @@ SRC			=	main.c \
 				fractol.c \
 				splash.c \
 				keys.c \
-				draw.c
+				draw.c \
+				mlx_pixel_put_to_image.c
 
 CC 			=	gcc
 FLAGS		=	-Wall -Werror -Wextra

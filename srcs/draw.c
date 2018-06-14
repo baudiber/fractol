@@ -11,52 +11,52 @@ void	reset_img(int **img)
 
 void	draw_mandelbrot(t_setup *stp)
 {
-	float x1 = -2.1;
-	float x2 = 0.6;
-	float y1 = -1.2;
-	float y2 = 1.2;
-	int zoom = 100; // pour une distance de 1 sur le plan, on a 100 pixel sur l'image
-	int iteration_max = 50;
-	int x = 0;
-	int y = 0;
-	float image_x = (x2 - x1) * zoom;
-	float image_y = (y2 - y1) * zoom;
-	float	c_r;
-	float	c_i;
-	float	z_r;
-	float	tmp;
-	float	z_i;
+	double x1 = -2.1;
+	double y1 = -1.2;
+	int zoom = 268; // pour une distance de 1 sur le plan, on a 100 pixel sur l'image
+	int iteration_max = 100;
+	double x;
+	double y;
+	double	c_r;
+	double	c_i;
+	double	z_r;
+	double	tmp;
+	double	z_i;
 	int		i;
 
-	while (x < image_x)
+	y = 0;
+	while (y < HEIGHT)
 	{
-		while (y < image_y)
+		x = 0;
+		while (x < WIDTH)
 		{
 			c_r = x / zoom + x1;
 			c_i = y / zoom + y1;
 			z_r = 0;
 			z_i = 0;
 			i = 0;
-			while (z_r * z_r + z_i * z_i < 4 && i < iteration_max)
+			while ((z_r * z_r) + (z_i * z_i) < 4 && i < iteration_max)
 			{
 				tmp = z_r;
-				z_r = z_r * z_r - z_i * z_i + c_r;
+				z_r = (z_r * z_r) - (z_i * z_i) + c_r;
 				z_i = 2 * z_i * tmp + c_i;
 				i++;
 			}
 			if (i == iteration_max)
-				stp->img[x + y * WIDTH] = 0;
+			//	mlx_pixel_put_to_image(stp->img_ptr, x , y, 0);
+				stp->img[(int)x + (int)y * WIDTH] = 0;
 			else
-				stp->img[x + y * WIDTH] = i * 255 / iteration_max;
-			y++;
+			//	mlx_pixel_put_to_image(stp->img_ptr, x , y, (i * 0x0000FF / iteration_max));
+				stp->img[(int)x + (int)y * WIDTH] = ((i * 0xFF / iteration_max) << 16) + (i * 0xFF / iteration_max);
+			x++;
 		}
-		x++;
+		y++;
 	}
 }
 
 void	draw(t_setup *stp)
 {
-	reset_img(&stp->img);	
+	reset_img(&stp->img);
 	if (stp->mandelbrot)
 		draw_mandelbrot(stp);
 	//else if (stp->julia)
