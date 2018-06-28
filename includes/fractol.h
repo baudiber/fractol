@@ -6,12 +6,12 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 22:53:30 by baudiber          #+#    #+#             */
-/*   Updated: 2018/06/29 00:59:30 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/06/29 01:10:38 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef _FRACTOL_H_
-# define _FRACTOL_H_
+#ifndef FRACTOL_H
+# define FRACTOL_H
 # define WIDTH 1024
 # define HEIGHT 724
 # define ABS(x) ((x > 0) ? x : -x)
