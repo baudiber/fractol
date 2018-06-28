@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: baudiber <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2018/06/29 00:57:22 by baudiber          #+#    #+#              #
+#    Updated: 2018/06/29 00:57:24 by baudiber         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME		=	fractol
 
 SRC_DIR		=	./srcs
@@ -11,8 +23,7 @@ SRC			=	main.c \
 				fractol.c \
 				splash.c \
 				keys.c \
-				draw.c \
-				mlx_pixel_put_to_image.c
+				draw.c 
 
 CC 			=	gcc
 FLAGS		=	-Wall -Werror -Wextra

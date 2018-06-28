@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 22:53:30 by baudiber          #+#    #+#             */
-/*   Updated: 2018/06/15 00:46:57 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/06/29 00:59:30 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,39 @@
 # include <math.h>
 
 typedef struct s_setup t_setup;
+typedef struct s_mandel t_mandel;
 
-struct s_setup
+struct			s_mandel
 {
-	char	*av;
-	char	*mlx;
-	char	*win;	
-	char	*img_ptr;
-	int		*img;
-	int		bpx;
-	int		s_line;
-	int		ed;
-	int		mandelbrot;
+	double		x1;
+	double		y1;
+	int			zoom;
+	int 		iteration_max;
+	double		c_r;
+	double		c_i;
+	double		z_r;
+	double		tmp;
+	double		z_i;
 };
 
-void	init_all(t_setup *stp);
-void	fractol(t_setup *stp);
-void	display_splash(t_setup *stp);
-int		stp_key(int key, t_setup *stp);
-void	draw(t_setup *stp);
-void	mlx_pixel_put_to_image(void *img, int x, int y, int color);
+struct			s_setup
+{
+	t_mandel 	mandel;
+	char		*av;
+	char		*mlx;
+	char		*win;	
+	char		*img_ptr;
+	int			*img;
+	int			bpx;
+	int			s_line;
+	int			ed;
+	int			mandelbrot;
+};
+
+void			init_all(t_setup *stp);
+void			fractol(t_setup *stp);
+void			display_splash(t_setup *stp);
+int				stp_key(int key, t_setup *stp);
+void			draw(t_setup *stp);
 
 #endif
