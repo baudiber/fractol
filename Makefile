@@ -6,7 +6,7 @@
 #    By: baudiber <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/29 00:57:22 by baudiber          #+#    #+#              #
-#    Updated: 2018/06/29 00:57:24 by baudiber         ###   ########.fr        #
+#    Updated: 2018/07/01 01:30:58 by baudiber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRC			=	main.c \
 				draw.c 
 
 CC 			=	gcc
-FLAGS		=	-Wall -Werror -Wextra
+FLAGS		=	-Wall -Werror -Wextra -pthread
 INCLUDES	=	-I $(INC_DIR)
 HEADER_H	=	$(INC_DIR)/$(NAME).h
 OBJ 		=	$(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
