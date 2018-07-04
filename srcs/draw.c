@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/29 01:09:26 by baudiber          #+#    #+#             */
-/*   Updated: 2018/07/01 02:07:19 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/07/04 23:23:48 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,18 @@ void	draw_mandelbrot(t_setup *stp)
 	}
 }
 
+/*
+void	draw_buddabrot(t_setup *stp)
+{
+	double	x;
+	double	y;
+	double	rsqr;
+	double	isqr;
+	int		i;
+	
+}
+*/
+
 void	draw_julia(t_setup *stp)
 {
 	double	x;
@@ -78,7 +90,7 @@ void	draw_julia(t_setup *stp)
 			stp->frac.c_r = 0.285;
 			stp->frac.c_i = 0.01;
 			stp->frac.z_r = x / stp->frac.zoom + stp->frac.x1;
-			stp->frac.z_r = y / stp->frac.zoom + stp->frac.y1;
+			stp->frac.z_i = y / stp->frac.zoom + stp->frac.y1;
 			rsqr = stp->frac.z_r * stp->frac.z_r;
 			isqr = stp->frac.z_i * stp->frac.z_i;
 			i = 0;

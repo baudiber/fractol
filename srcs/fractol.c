@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 23:05:57 by baudiber          #+#    #+#             */
-/*   Updated: 2018/07/01 02:08:40 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/07/04 23:11:16 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,15 @@ void	init(t_setup *stp)
 //		stp->frac.zoom = 268;
 //		stp->frac.iteration_max = 100;
 //	}
-	stp->frac.x1 = -1.5;
-	stp->frac.y1 = 1.5;
+//	if (stp->julia)
+//	{
+//	stp->frac.x1 = -1;
+//	stp->frac.y1 = -1.2;
+//	stp->frac.zoom = 100;
+//	stp->frac.iteration_max = 150;
+//	}
+	stp->frac.x1 = -2.1;
+	stp->frac.y1 = -1.2;
 	stp->frac.zoom = 100;
 	stp->frac.iteration_max = 150;
 }

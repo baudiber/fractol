@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 23:27:34 by baudiber          #+#    #+#             */
-/*   Updated: 2018/07/01 02:09:10 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/07/04 22:45:17 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int		mouse_move(int button, int x, int y, t_setup *stp)
 	if (button == 1)
 	{
 		printf("%f, %f\n", stp->frac.x1, stp->frac.y1);
-		stp->frac.x1 = x - H;
-		stp->frac.y1 = y - H;
-		stp->frac.zoom += 10;
+		stp->frac.x1 = x;
+		stp->frac.y1 = y;
+		//stp->frac.zoom += 10;
 	}
 	//6 = scroll down
 	if (button == 7)
