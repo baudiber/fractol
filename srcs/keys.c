@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 23:27:34 by baudiber          #+#    #+#             */
-/*   Updated: 2018/07/04 22:45:17 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/07/05 00:24:41 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@ int		mouse_move(int button, int x, int y, t_setup *stp)
 {
 	if (button == 1)
 	{
-		printf("%f, %f\n", stp->frac.x1, stp->frac.y1);
-		stp->frac.x1 = x;
-		stp->frac.y1 = y;
+		stp->frac.c_r = x * (double)(3 / WIDTH - 1.6);
+		stp->frac.c_i = y * (double)(2 / HEIGHT - 1);
+		//printf("%f, %f\n", stp->frac.x1, stp->frac.y1);
+		//stp->frac.x1 = x;
+		//stp->frac.y1 = y;
 		//stp->frac.zoom += 10;
 	}
 	//6 = scroll down
@@ -29,6 +31,15 @@ int		mouse_move(int button, int x, int y, t_setup *stp)
 	}
 	draw(stp);
 	printf("%d\n", button);
+	return (0);
+}
+
+int		julia_mouse(int x, int y, t_setup *stp)
+{
+	stp->frac.c_r = x * (3.0 / WIDTH) - 1;
+	stp->frac.c_i = y * (2.0 / HEIGHT) - 1;
+	//printf("%f, %f\n", stp->frac.c_r, stp->frac.c_i);
+	draw(stp);
 	return (0);
 }
 

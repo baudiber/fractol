@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/29 01:09:26 by baudiber          #+#    #+#             */
-/*   Updated: 2018/07/04 23:23:48 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/07/05 00:09:48 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,8 +87,8 @@ void	draw_julia(t_setup *stp)
 		x = 0;
 		while (x < WIDTH)
 		{
-			stp->frac.c_r = 0.285;
-			stp->frac.c_i = 0.01;
+			//stp->frac.c_r = 0.285;
+			//stp->frac.c_i = 0.01;
 			stp->frac.z_r = x / stp->frac.zoom + stp->frac.x1;
 			stp->frac.z_i = y / stp->frac.zoom + stp->frac.y1;
 			rsqr = stp->frac.z_r * stp->frac.z_r;
