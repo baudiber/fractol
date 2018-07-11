@@ -17,17 +17,27 @@ int		mouse_move(int button, int x, int y, t_setup *stp)
 {
 	if (button == 1)
 	{
-		stp->frac.c_r = x * (double)(3 / WIDTH - 1.6);
-		stp->frac.c_i = y * (double)(2 / HEIGHT - 1);
+		//stp->frac.x1 = x * (double)(4 / WIDTH);
+		//stp->frac.y1 = y * (double)(4 / HEIGHT);
 		//printf("%f, %f\n", stp->frac.x1, stp->frac.y1);
-		//stp->frac.x1 = x;
-		//stp->frac.y1 = y;
-		//stp->frac.zoom += 10;
+		stp->frac.z_r = stp->frac.z_r + stp->frac.zoom * x;
+		stp->frac.z_i = stp->frac.z_i + stp->frac.zoom * y;
+		stp->frac.zoom *= 2;
+	}
+	if (button == 2)
+	{
+		stp->frac.c_r = stp->frac.c_r + stp->frac.zoom * x;
+		stp->frac.c_i = stp->frac.c_i + stp->frac.zoom * y;
+		stp->frac.zoom /= 2;
 	}
 	//6 = scroll down
-	if (button == 7)
+	if (button == 4)
 	{
 		stp->frac.zoom += 10;
+	}
+	if (button == 5)
+	{
+		stp->frac.zoom -= 10;
 	}
 	draw(stp);
 	printf("%d\n", button);

@@ -117,8 +117,8 @@ void	draw(t_setup *stp)
 {
 	reset_img(&stp->img);
 //	if (stp->mandelbrot)
-	//draw_mandelbrot(stp);
-	draw_julia(stp);
+	draw_mandelbrot(stp);
+	//draw_julia(stp);
 	//pthread_create(&tid, &attr, 
 	//else if (stp->julia)
 	mlx_put_image_to_window(stp->img, stp->win, stp->img_ptr, 0, 0);

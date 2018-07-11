@@ -22,19 +22,19 @@ void	init(t_setup *stp)
 {
 //	if (stp->mandelbrot)
 //	{
-//		stp->frac.x1 = -2.1;
-//		stp->frac.y1 = -1.2;
-//		stp->frac.zoom = 268;
-//		stp->frac.iteration_max = 100;
+	stp->frac.x1 = -2.1;
+	stp->frac.y1 = -1.2;
+	stp->frac.zoom = 268;
+	stp->frac.iteration_max = 100;
 //	}
 	//if (stp->julia)
 	//{
-		stp->frac.x1 = -1;
-		stp->frac.y1 = -1.2;
-		stp->frac.zoom = 250;
-		stp->frac.iteration_max = 150;
-		stp->frac.c_r = 0.285;
-		stp->frac.c_i = 0.01;
+//		stp->frac.x1 = -1;
+//		stp->frac.y1 = -1.2;
+//		stp->frac.zoom = 250;
+//		stp->frac.iteration_max = 150;
+//		stp->frac.c_r = 0.285;
+//		stp->frac.c_i = 0.01;
 	//}
 //	stp->frac.x1 = -2.1;
 //	stp->frac.y1 = -1.2;
