@@ -22,12 +22,14 @@ void	tricorn(double x, double y, t_setup *stp)
 		isqr = SQR(stp->frac.z_i);
 		i++;
 	}
+	pthread_mutex_lock(&stp->mutex);
 	if (i == stp->frac.iteration_max)
 		//stp->img[(int)x + (int)y * WIDTH] = 0;
 		mlx_pixel_put_to_image(stp, x, y, 0);
 	else
 		//mlx_pixel_put_to_image(stp, x, y, ((i * 0xFF / stp->frac.iteration_max) << 16) + (i * 0xFF / stp->frac.iteration_max));
 		mlx_pixel_put_to_image(stp, x, y, (i * 0xFF / stp->frac.iteration_max) << 8);
+	pthread_mutex_unlock(&stp->mutex);
 		//stp->img[(int)x + (int)y * WIDTH] = ((i * 0xFF / stp->frac.iteration_max) << 16) + (i * 0xFF / stp->frac.iteration_max);
 }
 

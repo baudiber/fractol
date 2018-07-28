@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 22:53:30 by baudiber          #+#    #+#             */
-/*   Updated: 2018/07/11 22:21:30 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/07/29 00:42:58 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define HEIGHT 724
 # define ABS(x) ((x > 0) ? x : -x)
 # define SQR(x) (x * x)
-# define MAX_THREADS 3
+# define MAX_THREADS 8
 
 # include "mlx.h"
 # include <stdio.h>
@@ -44,6 +44,7 @@ struct			s_setup
 {
 	pthread_t		tids[MAX_THREADS];
 	pthread_attr_t	attr;
+	pthread_mutex_t	mutex;
 	t_frac 		frac;
 	unsigned int	color[766];
 	char		*av;

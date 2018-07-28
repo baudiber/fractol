@@ -51,6 +51,7 @@ void	*draw_mandelbrot(void *arg)
 		i++;
 	}
 	y = 0;
+	pthread_mutex_lock(&stp->mutex);
 	while (y < HEIGHT)
 	{
 		x = (WIDTH / MAX_THREADS) * i;
@@ -61,5 +62,6 @@ void	*draw_mandelbrot(void *arg)
 		}
 		y++;
 	}
+	pthread_mutex_unlock(&stp->mutex);
 	pthread_exit(0);
 }

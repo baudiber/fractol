@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/29 01:09:26 by baudiber          #+#    #+#             */
-/*   Updated: 2018/07/11 22:18:50 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/07/29 00:45:42 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,6 @@ void	draw(t_setup *stp)
 		draw_multibrot3(stp);
 	else if (stp->multibrot)
 		draw_multibrot(stp);
+	//pthread_mutex_destroy(&stp->mutex);
 	mlx_put_image_to_window(stp->img, stp->win, stp->img_ptr, 0, 0);
 }

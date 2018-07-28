@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 23:00:31 by baudiber          #+#    #+#             */
-/*   Updated: 2018/07/11 23:25:20 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/07/29 00:45:39 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,6 @@ void	init_all(t_setup *stp)
 	create_window("fractol", stp);
 	stp->img_ptr = mlx_new_image(stp->mlx, WIDTH, HEIGHT);
 	stp->img = mlx_get_data_addr(stp->img_ptr, &stp->bpx, &stp->s_line, &stp->ed);
+	pthread_mutex_init(&stp->mutex, NULL);
 	//stp->img = (int *)mlx_get_data_addr(stp->img_ptr, &stp->bpx, &stp->s_line, &stp->ed);
 }

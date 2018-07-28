@@ -27,7 +27,7 @@ void	bship(double x, double y, t_setup *stp)
 		mlx_pixel_put_to_image(stp, x, y, 0);
 	else
 	//	stp->img[(int)x + (int)y * WIDTH] = stp->color[i];
-		mlx_pixel_put_to_image(stp, x, y, ((i * 0xFF / stp->frac.iteration_max) << 16) + (i * 0xFF / stp->frac.iteration_max));
+		mlx_pixel_put_to_image(stp, x, y, ((i * 0xFF / stp->frac.iteration_max) << 9) + (i * 0xFF / stp->frac.iteration_max));
 		//stp->img[(int)x + (int)y * WIDTH] = ((i * 0xFF / stp->frac.iteration_max) << 16) + (i * 0xFF / stp->frac.iteration_max);
 }
 
