@@ -12,24 +12,19 @@
 
 #include "fractol.h"
 
-void	mlx_pixel_put_to_image(void *img, int x, int y, int color)
+void	mlx_pixel_put_to_image(t_setup *stp, int x, int y, int color)
 {
-	char		*data;
-	int			bpp;
-	int			sizeline;
-	int			endian;
 	int			i;
 
 	if (x >= WIDTH || y >= HEIGHT || x < 0 || y < 0)
 		return ;
-	data = mlx_get_data_addr(img, &bpp, &sizeline, &endian);
-	i = x * (bpp / 8) + y * sizeline;
-	data[i] = color % 256;
+	i = x * (stp->bpx / 8) + y * stp->s_line;
+	stp->img[i] = color % 256;
 	color /= 256;
-	data[i + 1] = color % 256;
+	stp->img[i + 1] = color % 256;
 	color /= 256;
-	data[i + 2] = color % 256;
+	stp->img[i + 2] = color % 256;
 	color /= 256;
-	data[i + 3] = 0;
+	stp->img[i + 3] = 0;
 	color /= 256;
 }

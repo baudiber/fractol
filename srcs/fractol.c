@@ -20,7 +20,6 @@ int		quitfdf(void)
 
 void	fractol(t_setup *stp)
 {	
-	pthread_attr_init(&stp->attr);
 	init(stp);
 	if (stp->splash)
 		display_splash(stp);
@@ -29,7 +28,8 @@ void	fractol(t_setup *stp)
 	//mlx_key_hook(stp->win, stp_key, stp);
 	mlx_hook(stp->win, 2, (1L << 0), stp_key, stp);
 	mlx_hook(stp->win, 17, 0L, quitfdf, NULL);
-	mlx_hook(stp->win, 6, (1L << 6), julia_mouse, stp);
+	if (stp->julia)
+		mlx_hook(stp->win, 6, (1L << 6), julia_mouse, stp);
 	mlx_mouse_hook(stp->win, mouse_move, stp);
 	mlx_loop(stp->mlx);
 }

@@ -54,8 +54,12 @@ int		julia_mouse(int x, int y, t_setup *stp)
 {
 	if (y < 3)
 		return (0);
-	stp->frac.c_r = x * (3.0 / WIDTH) - 1;
-	stp->frac.c_i = y * (2.0 / HEIGHT) - 1;
+	if (!stp->julia)
+		return (0);
+	//stp->frac.c_r = x * (3.0 / WIDTH) - 1;
+	//stp->frac.c_i = y * (2.0 / HEIGHT) - 1;
+	stp->frac.c_r = x * (3.0 / WIDTH) - 1.5;
+	stp->frac.c_i = y * (2.0 / HEIGHT) - 1.5;
 	draw(stp);
 	return (0);
 }
@@ -66,9 +70,11 @@ int		stp_key(int key, t_setup *stp)
 	if (key == 53)
 		exit(0);
 	if (key == 49)
-	{
 		stp->mandelbrot = 1;
-	}
+	if (key == 34)
+		stp->frac.iteration_max += 2;
+	if (key == 40)
+		stp->frac.iteration_max -= 2;
 	if (key == 69)
 		stp->frac.iteration_max += 1;
 	if (key == 78)
