@@ -28,8 +28,8 @@ SRC			=	main.c \
 				julia.c \
 				burningship.c \
 				tricorn.c \
-				test.c \
 				multibrot.c \
+				multibrot3.c \
 				mlx_pixel_put_to_image.c
 
 CC 			=	gcc

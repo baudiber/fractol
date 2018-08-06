@@ -46,7 +46,7 @@ int		mouse_move(int button, int x, int y, t_setup *stp)
 		stp->frac.zoom -= 10;
 	}
 	draw(stp);
-	printf("%d\n", button);
+//	printf("%d\n", button);
 	return (0);
 }
 
