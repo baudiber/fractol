@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 22:53:30 by baudiber          #+#    #+#             */
-/*   Updated: 2018/07/29 00:42:58 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/08/06 19:55:34 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,14 @@
 
 typedef struct s_setup t_setup;
 typedef struct s_frac t_frac;
+typedef struct s_xy t_xy;
+
+
+struct			s_xy
+{
+	double		x;
+	double		y;
+};
 
 struct			s_frac
 {
@@ -78,5 +86,6 @@ void			*draw_bship(void *arg);
 void			*draw_tricorn(void *arg);
 void			*draw_multibrot3(void *arg);
 void			*draw_multibrot(void *arg);
+void			set_pixel(int i, t_setup *stp, int tid, t_xy *xy);
 
 #endif

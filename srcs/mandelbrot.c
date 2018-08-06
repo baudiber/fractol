@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/08/06 22:35:28 by baudiber          #+#    #+#             */
+/*   Updated: 2018/08/06 22:37:48 by baudiber         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
-void	mandel(double x, double y, t_setup *stp, int tid)
+void	mandel(t_xy xy, t_setup *stp, int tid)
 {
 	double	isqr;
 	double	rsqr;
@@ -8,8 +20,8 @@ void	mandel(double x, double y, t_setup *stp, int tid)
 
 	stp->tmp[tid].z_r = 0;
 	stp->tmp[tid].z_i = 0;
-	stp->tmp[tid].c_r = x / stp->tmp[tid].zoom + stp->tmp[tid].x1;
-	stp->tmp[tid].c_i = y / stp->tmp[tid].zoom + stp->tmp[tid].y1;
+	stp->tmp[tid].c_r = xy.x / stp->tmp[tid].zoom + stp->tmp[tid].x1;
+	stp->tmp[tid].c_i = xy.y / stp->tmp[tid].zoom + stp->tmp[tid].y1;
 	rsqr = stp->tmp[tid].z_r * stp->tmp[tid].z_r;
 	isqr = stp->tmp[tid].z_i * stp->tmp[tid].z_i;
 	i = 0;
@@ -23,40 +35,33 @@ void	mandel(double x, double y, t_setup *stp, int tid)
 		isqr = SQR(stp->tmp[tid].z_i);
 		i++;
 	}
-	if (i == stp->tmp[tid].iteration_max)
-		stp->img[(int)x + (int)y * WIDTH] = 0;
-	else if (i > stp->tmp[tid].iteration_max / 3)
-		stp->img[(int)x + (int)y * WIDTH] = ((i * 0xFF / stp->tmp[tid].iteration_max) << 16) + ((i * 0xFF / stp->tmp[tid].iteration_max) << 8);
-	else
-		stp->img[(int)x + (int)y * WIDTH] = ((i * 0xFF / stp->tmp[tid].iteration_max + 30) << 16);
+	set_pixel(i, stp, tid, &xy);
 }
 
 void	*draw_mandelbrot(void *arg)
 {
-	t_setup *stp = (t_setup *)arg;
-	double	x;
-	double	y;
-	int		i;
-	pthread_t tid;
+	t_setup		*stp;
+	t_xy		xy;
+	int			i;
+	pthread_t	tid;
 
-	i = 0;
-	tid = pthread_self();	
-	while (i < MAX_THREADS)
+	stp = (t_setup *)arg;
+	i = -1;
+	tid = pthread_self();
+	while (++i < MAX_THREADS)
 	{
 		if (pthread_equal(stp->tids[i], tid))
-			break;
-		i++;
+			break ;
 	}
-	y = 0;
-	while (y < HEIGHT)
+	xy.y = -1;
+	while (++xy.y < HEIGHT)
 	{
-		x = (WIDTH / MAX_THREADS) * i;
-		while (x < (WIDTH / MAX_THREADS) * (i + 1))
+		xy.x = (WIDTH / MAX_THREADS) * i;
+		while (xy.x < (WIDTH / MAX_THREADS) * (i + 1))
 		{
-			mandel(x, y, stp, i);
-			x++;
+			mandel(xy, stp, i);
+			xy.x++;
 		}
-		y++;
 	}
 	pthread_exit(0);
 }

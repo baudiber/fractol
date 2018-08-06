@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 22:52:59 by baudiber          #+#    #+#             */
-/*   Updated: 2018/07/28 23:38:18 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/08/06 20:05:41 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,7 @@ int		main(int ac, char **av)
 			stp.n = ft_atoi(av[2]);
 	}
 	else
-	{
-		printf("ac = %d\n", ac);
 		stp.splash = 1;
-	}
 	init_all(&stp);
 	fractol(&stp);
 	return (0);	

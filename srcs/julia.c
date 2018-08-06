@@ -1,13 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   julia.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/08/06 22:31:47 by baudiber          #+#    #+#             */
+/*   Updated: 2018/08/06 22:32:15 by baudiber         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
-void	julia(double x, double y, t_setup *stp, int tid)
+void	julia(t_xy xy, t_setup *stp, int tid)
 {
 	double	rsqr;
 	double	isqr;
 	int		i;
 
-	stp->tmp[tid].z_r = x / stp->tmp[tid].zoom + stp->tmp[tid].x1;
-	stp->tmp[tid].z_i = y / stp->tmp[tid].zoom + stp->tmp[tid].y1;
+	stp->tmp[tid].z_r = xy.x / stp->tmp[tid].zoom + stp->tmp[tid].x1;
+	stp->tmp[tid].z_i = xy.y / stp->tmp[tid].zoom + stp->tmp[tid].y1;
 	rsqr = stp->tmp[tid].z_r * stp->tmp[tid].z_r;
 	isqr = stp->tmp[tid].z_i * stp->tmp[tid].z_i;
 	i = 0;
@@ -15,46 +27,39 @@ void	julia(double x, double y, t_setup *stp, int tid)
 	{
 		stp->tmp[tid].tmp = stp->tmp[tid].z_r;
 		stp->tmp[tid].z_r = rsqr - isqr + stp->tmp[tid].c_r;
-		stp->tmp[tid].z_i = 2 * stp->tmp[tid].z_i * stp->tmp[tid].tmp + stp->tmp[tid].c_i;
+		stp->tmp[tid].z_i = 2 * stp->tmp[tid].z_i * stp->tmp[tid].tmp \
+			+ stp->tmp[tid].c_i;
 		rsqr = SQR(stp->tmp[tid].z_r);
 		isqr = SQR(stp->tmp[tid].z_i);
 		i++;
 	}
-	if (i == stp->tmp[tid].iteration_max)
-		stp->img[(int)x + (int)y * WIDTH] = 0;
-	else if (i > stp->tmp[tid].iteration_max / 3)
-		stp->img[(int)x + (int)y * WIDTH] = ((i * 0xFF / stp->tmp[tid].iteration_max) << 16) + ((i * 0xFF / stp->tmp[tid].iteration_max) << 8);
-	else
-		stp->img[(int)x + (int)y * WIDTH] = ((i * 0xFF / stp->tmp[tid].iteration_max + 30) << 16);
+	set_pixel(i, stp, tid, &xy);
 }
 
 void	*draw_julia(void *arg)
 {
-	t_setup *stp = (t_setup *)arg;
-	double	x;
-	double	y;
-	int		i;
-	pthread_t tid;
+	t_setup		*stp;
+	t_xy		xy;
+	int			i;
+	pthread_t	tid;
 
-	i = 0;
-	tid = pthread_self();	
-	while (i < MAX_THREADS)
+	stp = (t_setup *)arg;
+	i = -1;
+	tid = pthread_self();
+	while (++i < MAX_THREADS)
 	{
 		if (pthread_equal(stp->tids[i], tid))
-			break;
-		i++;
+			break ;
 	}
-	y = 0;
-	while (y < HEIGHT)
+	xy.y = -1;
+	while (++xy.y < HEIGHT)
 	{
-		x = (WIDTH / MAX_THREADS) * i;
-		while (x < (WIDTH / MAX_THREADS) * (i + 1))
+		xy.x = (WIDTH / MAX_THREADS) * i;
+		while (xy.x < (WIDTH / MAX_THREADS) * (i + 1))
 		{
-			julia(x, y, stp, i);
-			x++;
+			julia(xy, stp, i);
+			xy.x++;
 		}
-		y++;
 	}
 	pthread_exit(0);
-
 }

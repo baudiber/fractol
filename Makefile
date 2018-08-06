@@ -6,7 +6,7 @@
 #    By: baudiber <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/29 00:57:22 by baudiber          #+#    #+#              #
-#    Updated: 2018/07/01 01:30:58 by baudiber         ###   ########.fr        #
+#    Updated: 2018/08/06 19:56:03 by baudiber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ SRC			=	main.c \
 				tricorn.c \
 				multibrot.c \
 				multibrot3.c \
-				mlx_pixel_put_to_image.c
+				pixel.c
 
 CC 			=	gcc
 FLAGS		=	-Wall -Werror -Wextra -pthread

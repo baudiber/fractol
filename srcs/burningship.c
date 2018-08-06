@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   burningship.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/08/06 19:34:14 by baudiber          #+#    #+#             */
+/*   Updated: 2018/08/06 19:55:41 by baudiber         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
-void	bship(double x, double y, t_setup *stp, int tid)
+void	bship(t_xy xy, t_setup *stp, int tid)
 {
 	double	rsqr;
 	double	isqr;
@@ -8,54 +20,48 @@ void	bship(double x, double y, t_setup *stp, int tid)
 
 	stp->tmp[tid].z_r = 0;
 	stp->tmp[tid].z_i = 0;
-	stp->tmp[tid].c_r = x / stp->tmp[tid].zoom + stp->tmp[tid].x1;
-	stp->tmp[tid].c_i = y / stp->tmp[tid].zoom + stp->tmp[tid].y1;
+	stp->tmp[tid].c_r = xy.x / stp->tmp[tid].zoom + stp->tmp[tid].x1;
+	stp->tmp[tid].c_i = xy.y / stp->tmp[tid].zoom + stp->tmp[tid].y1;
 	rsqr = stp->tmp[tid].z_r * stp->tmp[tid].z_r;
 	isqr = stp->tmp[tid].z_i * stp->tmp[tid].z_i;
 	i = 0;
 	while (rsqr + isqr < (1 << 16) && i < stp->tmp[tid].iteration_max)
 	{
 		stp->tmp[tid].tmp = rsqr - isqr + stp->tmp[tid].c_r;
-		stp->tmp[tid].z_i = ABS(2 * stp->tmp[tid].z_r * stp->tmp[tid].z_i) + stp->tmp[tid].c_i;
+		stp->tmp[tid].z_i = ABS(2 * stp->tmp[tid].z_r * stp->tmp[tid].z_i) \
+			+ stp->tmp[tid].c_i;
 		stp->tmp[tid].z_r = ABS(stp->tmp[tid].tmp);
 		rsqr = SQR(stp->tmp[tid].z_r);
 		isqr = SQR(stp->tmp[tid].z_i);
 		i++;
 	}
-	if (i == stp->tmp[tid].iteration_max)
-		stp->img[(int)x + (int)y * WIDTH] = 0;
-	else if (i > stp->tmp[tid].iteration_max / 3)
-		stp->img[(int)x + (int)y * WIDTH] = ((i * 0xFF / stp->tmp[tid].iteration_max) << 16) + ((i * 0xFF / stp->tmp[tid].iteration_max) << 8);
-	else
-		stp->img[(int)x + (int)y * WIDTH] = ((i * 0xFF / stp->tmp[tid].iteration_max + 30) << 16);
+	set_pixel(i, stp, tid, &xy);
 }
 
 void	*draw_bship(void *arg)
 {
-	t_setup *stp = (t_setup *)arg;
-	double	x;
-	double	y;
-	int		i;
-	pthread_t tid;
+	t_setup		*stp;
+	t_xy		coord;
+	int			i;
+	pthread_t	tid;
 
-	i = 0;
-	tid = pthread_self();	
-	while (i < MAX_THREADS)
+	stp = (t_setup *)arg;
+	i = -1;
+	tid = pthread_self();
+	while (++i < MAX_THREADS)
 	{
 		if (pthread_equal(stp->tids[i], tid))
-			break;
-		i++;
+			break ;
 	}
-	y = 0;
-	while (y < HEIGHT)
+	coord.y = -1;
+	while (++coord.y < HEIGHT)
 	{
-		x = (WIDTH / MAX_THREADS) * i;
-		while (x < (WIDTH / MAX_THREADS) * (i + 1))
+		coord.x = (WIDTH / MAX_THREADS) * i;
+		while (coord.x < (WIDTH / MAX_THREADS) * (i + 1))
 		{
-			bship(x, y, stp, i);
-			x++;
+			bship(coord, stp, i);
+			coord.x++;
 		}
-		y++;
 	}
 	pthread_exit(0);
 }

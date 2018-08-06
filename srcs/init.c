@@ -6,16 +6,11 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 23:00:31 by baudiber          #+#    #+#             */
-/*   Updated: 2018/07/29 00:45:39 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/08/06 20:04:36 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-void	create_window(char *str, t_setup *stp)
-{
-	stp->win = mlx_new_window(stp->mlx, WIDTH, HEIGHT, str);
-}
 
 void	init(t_setup *stp)
 {
@@ -53,8 +48,8 @@ void	init(t_setup *stp)
 void	init_all(t_setup *stp)
 {
 	stp->mlx = mlx_init();
-	create_window("fractol", stp);
+	stp->win = mlx_new_window(stp->mlx, WIDTH, HEIGHT, stp->av ? stp->av : "fractol");
+//	create_window("fractol", stp);
 	stp->img_ptr = mlx_new_image(stp->mlx, WIDTH, HEIGHT);
-	//stp->img = mlx_get_data_addr(stp->img_ptr, &stp->bpx, &stp->s_line, &stp->ed);
 	stp->img = (int *)mlx_get_data_addr(stp->img_ptr, &stp->bpx, &stp->s_line, &stp->ed);
 }
