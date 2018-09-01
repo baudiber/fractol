@@ -29,9 +29,9 @@ void	init(t_setup *stp)
 	}
 	if (stp->multibrot3 || stp->multibrot || stp->mandelbrot)
 	{
-		stp->frac.x1 = -2.5;
-		stp->frac.y1 = -1;
-		stp->frac.zoom = 268;
+		stp->frac.x1 = -2.3;
+		stp->frac.y1 = -1.2;
+		stp->frac.zoom = 300;
 		if (stp->multibrot)
 			stp->frac.iteration_max = 20;
 	}

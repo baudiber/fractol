@@ -16,7 +16,7 @@
 # define HEIGHT 724
 # define ABS(x) ((x > 0) ? x : -x)
 # define SQR(x) (x * x)
-# define MAX_THREADS 10
+# define MAX_THREADS 8
 
 # include "mlx.h"
 # include <stdio.h>

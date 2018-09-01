@@ -22,8 +22,8 @@ void	mandel(t_xy xy, t_setup *stp, int tid)
 	stp->tmp[tid].z_i = 0;
 	stp->tmp[tid].c_r = xy.x / stp->tmp[tid].zoom + stp->tmp[tid].x1;
 	stp->tmp[tid].c_i = xy.y / stp->tmp[tid].zoom + stp->tmp[tid].y1;
-	rsqr = stp->tmp[tid].z_r * stp->tmp[tid].z_r;
-	isqr = stp->tmp[tid].z_i * stp->tmp[tid].z_i;
+	rsqr = 0;
+	isqr = 0;
 	i = 0;
 	while (rsqr + isqr < 4 && i < stp->tmp[tid].iteration_max)
 	{
