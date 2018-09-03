@@ -34,15 +34,17 @@ int		mouse_move(int button, int x, int y, t_setup *stp)
 	//6 = scroll down
 	if (button == 4)
 	{
-		stp->frac.x1 = x * (3.0 / WIDTH) - 3;
-		stp->frac.y1 = y * (2.0 / HEIGHT) - 2; 
-		stp->frac.zoom += 10;
+		stp->frac.x1 = x;
+		stp->frac.y1 = y;
+		stp->frac.x1 /= 1.2;
+		stp->frac.y1 /= 1.2;
+		stp->frac.zoom *= 1.2;
 	}
 	if (button == 5)
 	{
-		stp->frac.x1 = x * (3.0 / WIDTH) - 3;
-		stp->frac.y1 = y * (2.0 / HEIGHT) - 2; 
-		stp->frac.zoom -= 10;
+		stp->frac.x1 *= 1.2;
+		stp->frac.y1 *= 1.2;
+		stp->frac.zoom /= 1.2;
 	}
 	draw(stp);
 //	printf("%d\n", button);
@@ -69,7 +71,12 @@ int		stp_key(int key, t_setup *stp)
 	if (key == 53)
 		exit(0);
 	if (key == 49)
+	{
 		stp->mandelbrot = 1;
+		stp->frac.x1 = -2.3;
+		stp->frac.y1 = -1.2;
+		stp->frac.zoom = 300;
+	}
 	if (key == 34)
 		stp->frac.iteration_max += 2;
 	if (key == 40)

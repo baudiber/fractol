@@ -35,7 +35,8 @@ void	mandel(t_xy xy, t_setup *stp, int tid)
 		isqr = SQR(stp->tmp[tid].z_i);
 		i++;
 	}
-	set_pixel(i, stp, tid, &xy);
+	//set_pixel(i, stp, tid, &xy);
+	set_rainbow(i, stp, tid, &xy);
 }
 
 void	*draw_mandelbrot(void *arg)
