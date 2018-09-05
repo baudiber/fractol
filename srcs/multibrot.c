@@ -27,7 +27,7 @@ void	multibrot(double x, double y, t_setup *stp, int tid)
 	rsqr = stp->tmp[tid].z_r * stp->tmp[tid].z_r;
 	isqr = stp->tmp[tid].z_i * stp->tmp[tid].z_i;
 	i = 0;
-	while (rsqr + isqr < 8 && i < stp->tmp[tid].iteration_max)
+	while (rsqr + isqr < 8 && i < 40)
 	{
 		stp->tmp[tid].tmp = squaren((rsqr + isqr), (n / 2)) * cos(n * atan2(stp->tmp[tid].z_i, stp->tmp[tid].z_r)) + stp->tmp[tid].c_r;
 		stp->tmp[tid].z_i = squaren((rsqr + isqr), (n / 2)) * sin(n * atan2(stp->tmp[tid].z_i, stp->tmp[tid].z_r)) + stp->tmp[tid].c_i;

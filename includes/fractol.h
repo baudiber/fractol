@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 22:53:30 by baudiber          #+#    #+#             */
-/*   Updated: 2018/08/06 19:55:34 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/09/05 17:30:57 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ struct			s_xy
 
 struct			s_frac
 {
-	int			buddha[WIDTH][HEIGHT];
 	double		x1;
 	double		y1;
 	int			zoom;
@@ -67,6 +66,7 @@ struct			s_setup
 	pthread_attr_t	attr;
 	t_frac 		tmp[MAX_THREADS];
 	t_frac 		frac;
+	t_xy		prev;
 	void		*(*ft_frac)();
 	char		*av;
 	char		*mlx;
@@ -77,13 +77,6 @@ struct			s_setup
 	int			bpx;
 	int			s_line;
 	int			ed;
-	int			splash;
-	int			mandelbrot;
-	int			julia;
-	int			tricorn;
-	int			bship;
-	int			multibrot3;
-	int			multibrot;
 	int			n;
 };
 

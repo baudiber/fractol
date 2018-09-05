@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 22:52:59 by baudiber          #+#    #+#             */
-/*   Updated: 2018/08/06 20:05:41 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/09/05 17:28:27 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	which_frac(t_setup *stp)
 		stp->ft_frac = draw_tricorn;
 	else if (!ft_strcmp(stp->av, "burningship"))
 		stp->ft_frac = draw_bship;
-	else if (!ft_strcmp(stp->av, "multibrot3"))
-		stp->ft_frac = draw_multibrot3;
 	else if (!ft_strcmp(stp->av, "multibrot"))
 		stp->ft_frac = draw_multibrot;
+	else if (!ft_strcmp(stp->av, "multibrot3"))
+		stp->ft_frac = draw_multibrot3;
 }
 
 void	print_help(void)
@@ -66,6 +66,7 @@ int		main(int ac, char **av)
 			i++;
 		}
 	}
+	ft_bzero(&stp, sizeof(t_setup));
 	if (ac == 3)
 	{
 		stp.n = ft_atoi(av[2]);
@@ -73,7 +74,6 @@ int		main(int ac, char **av)
 			ft_errors(2);
 	}
 	print_help();
-	ft_bzero(&stp, sizeof(t_setup));
 	stp.av = av[1];
 	which_frac(&stp);
 	init_all(&stp);

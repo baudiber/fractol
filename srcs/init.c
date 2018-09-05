@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 23:00:31 by baudiber          #+#    #+#             */
-/*   Updated: 2018/08/06 20:04:36 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/09/05 17:31:51 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	init(t_setup *stp)
 {
 	stp->frac.iteration_max = 150;
 	stp->rainbow = 0;
+	stp->prev.x = 0;
+	stp->prev.y = 0;
 	if (stp->av[0] == 'b')
 	{
 		stp->frac.x1 = -2.5;
@@ -32,9 +34,7 @@ void	init(t_setup *stp)
 	{
 		stp->frac.x1 = -2.3;
 		stp->frac.y1 = -1.2;
-		stp->frac.zoom = 300;
-		if (stp->multibrot)
-			stp->frac.iteration_max = 20;
+		stp->frac.zoom = 250;
 	}
 	if (stp->av[0] == 'j')
 	{

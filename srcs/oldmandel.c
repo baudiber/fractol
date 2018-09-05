@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 22:35:28 by baudiber          #+#    #+#             */
-/*   Updated: 2018/09/05 17:46:35 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/09/05 17:20:03 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	*draw_mandelbrot(void *arg)
 		if (pthread_equal(stp->tids[i], tid))
 			break ;
 	}
-	xy.y = stp->prev.y;
+	xy.y = -1;
 	while (++xy.y < HEIGHT)
 	{
 		xy.x = (WIDTH / MAX_THREADS) * i;
