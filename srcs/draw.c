@@ -21,23 +21,6 @@ void	reset_img(int **img)
 		(*img)[i++] = 0;
 }
 
-void	frac(t_setup *stp, int i)
-{
-	if (stp->mandelbrot)
-		pthread_create(&stp->tids[i], NULL, draw_mandelbrot, stp); 
-	else if (stp->julia)
-		pthread_create(&stp->tids[i], NULL, draw_julia, stp); 
-	else if (stp->tricorn)
-		pthread_create(&stp->tids[i], NULL, draw_tricorn, stp); 
-	else if (stp->bship)
-		pthread_create(&stp->tids[i], NULL, draw_bship, stp); 
-	else if (stp->multibrot3)
-		pthread_create(&stp->tids[i], NULL, draw_multibrot3, stp); 
-	else if (stp->multibrot)
-		pthread_create(&stp->tids[i], NULL, draw_multibrot, stp); 
-}
-
-//ptr sur fonction ? 
 void	draw(t_setup *stp)
 {
 	int		i;
@@ -47,7 +30,7 @@ void	draw(t_setup *stp)
 	while (i < MAX_THREADS)
 	{
 		stp->tmp[i] = stp->frac;
-		frac(stp, i);
+		pthread_create(&stp->tids[i], NULL, stp->ft_frac, stp); 
 		i++;
 	}
 	i = 0;

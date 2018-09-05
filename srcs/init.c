@@ -15,19 +15,20 @@
 void	init(t_setup *stp)
 {
 	stp->frac.iteration_max = 150;
-	if (stp->bship)
+	stp->rainbow = 0;
+	if (stp->av[0] == 'b')
 	{
 		stp->frac.x1 = -2.5;
 		stp->frac.y1 = -2;
 		stp->frac.zoom = 250;
 	}
-	if (stp->tricorn)
+	if (stp->av[0] == 't')
 	{
 		stp->frac.x1 = -2.2;
 		stp->frac.y1 = -1.5;
 		stp->frac.zoom = 250;
 	}
-	if (stp->multibrot3 || stp->multibrot || stp->mandelbrot)
+	if (stp->av[0] == 'm')
 	{
 		stp->frac.x1 = -2.3;
 		stp->frac.y1 = -1.2;
@@ -35,7 +36,7 @@ void	init(t_setup *stp)
 		if (stp->multibrot)
 			stp->frac.iteration_max = 20;
 	}
-	if (stp->julia)
+	if (stp->av[0] == 'j')
 	{
 		stp->frac.x1 = -1.7;
 		stp->frac.y1 = -1.2;
@@ -49,7 +50,6 @@ void	init_all(t_setup *stp)
 {
 	stp->mlx = mlx_init();
 	stp->win = mlx_new_window(stp->mlx, WIDTH, HEIGHT, stp->av ? stp->av : "fractol");
-//	create_window("fractol", stp);
 	stp->img_ptr = mlx_new_image(stp->mlx, WIDTH, HEIGHT);
 	stp->img = (int *)mlx_get_data_addr(stp->img_ptr, &stp->bpx, &stp->s_line, &stp->ed);
 }

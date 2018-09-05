@@ -12,11 +12,23 @@
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
-# define WIDTH 1024
-# define HEIGHT 724
+# define WIDTH 800
+# define HEIGHT 600
 # define ABS(x) ((x > 0) ? x : -x)
 # define SQR(x) (x * x)
 # define MAX_THREADS 32
+# define SCROLL_DOWN 4
+# define SCROLL_UP 5
+# define ECHAP 53
+# define KEY_I 34
+# define KEY_K 40
+# define KEY_W 13
+# define KEY_S 1
+# define KEY_C 8
+# define ARROW_UP 126
+# define ARROW_DOWN 125
+# define ARROW_LEFT 123
+# define ARROW_RIGHT 124
 
 # include "mlx.h"
 # include <stdio.h>
@@ -37,6 +49,7 @@ struct			s_xy
 
 struct			s_frac
 {
+	int			buddha[WIDTH][HEIGHT];
 	double		x1;
 	double		y1;
 	int			zoom;
@@ -54,10 +67,12 @@ struct			s_setup
 	pthread_attr_t	attr;
 	t_frac 		tmp[MAX_THREADS];
 	t_frac 		frac;
+	void		*(*ft_frac)();
 	char		*av;
 	char		*mlx;
 	char		*win;	
 	char		*img_ptr;
+	int			rainbow;
 	int			*img;
 	int			bpx;
 	int			s_line;

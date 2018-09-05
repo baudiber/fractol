@@ -21,14 +21,12 @@ int		quitfdf(void)
 void	fractol(t_setup *stp)
 {	
 	init(stp);
-	if (stp->splash)
-		display_splash(stp);
-	else
-		draw(stp);
-	//mlx_key_hook(stp->win, stp_key, stp);
-	mlx_hook(stp->win, 2, (1L << 0), stp_key, stp);
+	draw(stp);
+	//garder ca c'est le non repeat key
+	mlx_key_hook(stp->win, stp_key, stp);
+//	mlx_hook(stp->win, 2, (1L << 0), stp_key, stp);
 	mlx_hook(stp->win, 17, 0L, quitfdf, NULL);
-	if (stp->julia)
+	if (stp->av[0] == 'j')
 		mlx_hook(stp->win, 6, (1L << 6), julia_mouse, stp);
 	mlx_mouse_hook(stp->win, mouse_move, stp);
 	mlx_loop(stp->mlx);

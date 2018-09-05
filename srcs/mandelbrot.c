@@ -12,16 +12,12 @@
 
 #include "fractol.h"
 
-void	mandel(t_xy xy, t_setup *stp, int tid)
+void	mandel(t_xy *xy, t_setup *stp, int tid)
 {
 	double	isqr;
 	double	rsqr;
 	int		i;
 
-	stp->tmp[tid].z_r = 0;
-	stp->tmp[tid].z_i = 0;
-	stp->tmp[tid].c_r = xy.x / stp->tmp[tid].zoom + stp->tmp[tid].x1;
-	stp->tmp[tid].c_i = xy.y / stp->tmp[tid].zoom + stp->tmp[tid].y1;
 	rsqr = 0;
 	isqr = 0;
 	i = 0;
@@ -35,8 +31,10 @@ void	mandel(t_xy xy, t_setup *stp, int tid)
 		isqr = SQR(stp->tmp[tid].z_i);
 		i++;
 	}
-	//set_pixel(i, stp, tid, &xy);
-	set_rainbow(i, stp, tid, &xy);
+	if (stp->rainbow)
+		set_rainbow(i, stp, tid, xy);
+	else
+		set_pixel(i, stp, tid, xy);
 }
 
 void	*draw_mandelbrot(void *arg)
@@ -60,7 +58,11 @@ void	*draw_mandelbrot(void *arg)
 		xy.x = (WIDTH / MAX_THREADS) * i;
 		while (xy.x < (WIDTH / MAX_THREADS) * (i + 1))
 		{
-			mandel(xy, stp, i);
+			stp->tmp[i].z_r = 0;
+			stp->tmp[i].z_i = 0;
+			stp->tmp[i].c_r = xy.x / stp->tmp[i].zoom + stp->tmp[i].x1;
+			stp->tmp[i].c_i = xy.y / stp->tmp[i].zoom + stp->tmp[i].y1;
+			mandel(&xy, stp, i);
 			xy.x++;
 		}
 	}

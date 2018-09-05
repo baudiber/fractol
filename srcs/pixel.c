@@ -32,7 +32,7 @@ void	set_rainbow(int i, t_setup *stp, int tid, t_xy *xy)
 	degrad = stp->tmp[tid].iteration_max / 7;
 	if (i < degrad)
  		stp->img[(int)xy->x + (int)xy->y * WIDTH] = ((i * 0xFF \
-			/ degrad + 30) << 16);
+			/ degrad + 10) << 16);
 	else if (i < degrad * 2)
 		stp->img[(int)xy->x + (int)xy->y * WIDTH] = (0xFF << 16) + ((i * 0xFF / degrad * 2 + 30) << 8);
 	else if (i < degrad * 3)
@@ -47,5 +47,4 @@ void	set_rainbow(int i, t_setup *stp, int tid, t_xy *xy)
 		stp->img[(int)xy->x + (int)xy->y * WIDTH] = (0xFF << 16) + (i * 0xFF / degrad * 7 + 30);
 	else
 		stp->img[(int)xy->x + (int)xy->y * WIDTH] = 0;
-
 }
