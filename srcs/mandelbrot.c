@@ -53,10 +53,10 @@ void	*draw_mandelbrot(void *arg)
 			break ;
 	}
 	xy.y = stp->prev.y;
-	while (++xy.y < HEIGHT)
+	while (++xy.y < HEIGHT + stp->prev.y)
 	{
-		xy.x = (WIDTH / MAX_THREADS) * i;
-		while (xy.x < (WIDTH / MAX_THREADS) * (i + 1))
+		xy.x = (WIDTH / MAX_THREADS) * i + stp->prev.x;
+		while (xy.x < ((WIDTH / MAX_THREADS) * (i + 1)) + stp->prev.x)
 		{
 			stp->tmp[i].z_r = 0;
 			stp->tmp[i].z_i = 0;

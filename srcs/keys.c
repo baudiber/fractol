@@ -19,32 +19,35 @@ int		mouse_move(int button, int x, int y, t_setup *stp)
 		return (0);
 	if (button == 1)
 	{
-		stp->frac.x1 = x / stp->frac.zoom - 2.3;
-		stp->frac.y1 = y / stp->frac.zoom - 1.2; 
-		printf("%f, %f\n", stp->frac.x1, stp->frac.y1);
-		printf("%d, %d\n", x, y);
-		//stp->frac.zoom *= 1.2;
+		stp->prev.x += x / 5;
+		stp->prev.y += y / 5;
+		stp->prev.x *= 1.2;
+		stp->prev.y *= 1.2;
+		stp->frac.zoom *= 1.2;
 	}
 	if (button == 2)
 	{
-		stp->frac.x1 = x * (0.2 / WIDTH) - 2.3;
-		stp->frac.y1 = y * (0.12 / HEIGHT) - 1.2; 
-		//stp->frac.zoom /= 1.2;
-	}
-	//6 = scroll down
-	if (button == SCROLL_DOWN)
-	{
-		stp->frac.x1 = x;
-		stp->frac.y1 = y;
-		stp->frac.x1 /= 1.2;
-		stp->frac.y1 /= 1.2;
-		stp->frac.zoom *= 1.2;
+		stp->prev.x -= x / 5;
+		stp->prev.y -= y / 5;
+		stp->prev.x *= 0.8;
+		stp->prev.y *= 0.8;
+		stp->frac.zoom *= 0.8;
 	}
 	if (button == SCROLL_UP)
 	{
-		stp->frac.x1 *= 1.2;
-		stp->frac.y1 *= 1.2;
-		stp->frac.zoom /= 1.2;
+		stp->prev.x += x / 5;
+		stp->prev.y += y / 5;
+		stp->prev.x *= 1.2;
+		stp->prev.y *= 1.2;
+		stp->frac.zoom *= 1.2;
+	}
+	if (button == SCROLL_DOWN)
+	{
+		stp->prev.x -= x / 5;
+		stp->prev.y -= y / 5;
+		stp->prev.x *= 0.8;
+		stp->prev.y *= 0.8;
+		stp->frac.zoom *= 0.8;
 	}
 	draw(stp);
 //	printf("%d\n", button);
@@ -63,7 +66,6 @@ int		julia_mouse(int x, int y, t_setup *stp)
 
 int		stp_key(int key, t_setup *stp)
 {
-	printf("%d\n", key);
 	if (key == ECHAP)
 		exit(0);
 	if (key == KEY_I)
@@ -82,15 +84,15 @@ int		stp_key(int key, t_setup *stp)
 		stp->rainbow = (stp->rainbow) ? 0 : 1;
 	if (key == KEY_W)
 	{
-		stp->frac.x1 /= 1.2;
-		stp->frac.y1 /= 1.2;
+		stp->prev.x *= 1.2;
+		stp->prev.y *= 1.2;
 		stp->frac.zoom *= 1.2;
 	}
 	if (key == KEY_S)
 	{
-		stp->frac.x1 *= 1.2;
-		stp->frac.y1 *= 1.2;
-		stp->frac.zoom /= 1.2;
+		stp->prev.x *= 0.8;
+		stp->prev.y *= 0.8;
+		stp->frac.zoom *= 0.8;
 	}
 	draw(stp);
 	return (0);

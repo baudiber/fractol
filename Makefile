@@ -21,7 +21,6 @@ MLX_DIR		=	./minilibx/minilibx_mac
 SRC			=	main.c \
 				init.c \
 				fractol.c \
-				splash.c \
 				keys.c \
 				draw.c \
 				mandelbrot.c \

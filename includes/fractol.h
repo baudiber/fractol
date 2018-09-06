@@ -12,13 +12,13 @@
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
-# define WIDTH 800
-# define HEIGHT 600
+# define WIDTH 640
+# define HEIGHT 480
 # define ABS(x) ((x > 0) ? x : -x)
 # define SQR(x) (x * x)
 # define MAX_THREADS 32
-# define SCROLL_DOWN 4
-# define SCROLL_UP 5
+# define SCROLL_DOWN 5
+# define SCROLL_UP 4
 # define ECHAP 53
 # define KEY_I 34
 # define KEY_K 40
