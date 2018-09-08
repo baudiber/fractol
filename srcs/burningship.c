@@ -12,16 +12,12 @@
 
 #include "fractol.h"
 
-void	bship(t_xy xy, t_setup *stp, int tid)
+void	bship(t_xy *xy, t_setup *stp, int tid)
 {
 	double	rsqr;
 	double	isqr;
 	int		i;
 
-	stp->tmp[tid].z_r = 0;
-	stp->tmp[tid].z_i = 0;
-	stp->tmp[tid].c_r = xy.x / stp->tmp[tid].zoom + stp->tmp[tid].x1;
-	stp->tmp[tid].c_i = xy.y / stp->tmp[tid].zoom + stp->tmp[tid].y1;
 	rsqr = stp->tmp[tid].z_r * stp->tmp[tid].z_r;
 	isqr = stp->tmp[tid].z_i * stp->tmp[tid].z_i;
 	i = 0;
@@ -35,13 +31,16 @@ void	bship(t_xy xy, t_setup *stp, int tid)
 		isqr = SQR(stp->tmp[tid].z_i);
 		i++;
 	}
-	set_pixel(i, stp, tid, &xy);
+	if (stp->rainbow)
+		set_rainbow(i, stp, tid, xy);
+	else
+		set_pixel(i, stp, tid, xy);
 }
 
 void	*draw_bship(void *arg)
 {
 	t_setup		*stp;
-	t_xy		coord;
+	t_xy		xy;
 	int			i;
 	pthread_t	tid;
 
@@ -53,14 +52,18 @@ void	*draw_bship(void *arg)
 		if (pthread_equal(stp->tids[i], tid))
 			break ;
 	}
-	coord.y = -1;
-	while (++coord.y < HEIGHT)
+	xy.y = stp->prev.y;
+	while (++xy.y < HEIGHT + stp->prev.y)
 	{
-		coord.x = (WIDTH / MAX_THREADS) * i;
-		while (coord.x < (WIDTH / MAX_THREADS) * (i + 1))
+		xy.x = (WIDTH / MAX_THREADS) * i + stp->prev.x;
+		while (xy.x < (WIDTH / MAX_THREADS) * (i + 1) + stp->prev.x)
 		{
-			bship(coord, stp, i);
-			coord.x++;
+			stp->tmp[i].z_r = 0;
+			stp->tmp[i].z_i = 0;
+			stp->tmp[i].c_r = xy.x / stp->tmp[i].zoom + stp->tmp[i].x1;
+			stp->tmp[i].c_i = xy.y / stp->tmp[i].zoom + stp->tmp[i].y1;
+			bship(&xy, stp, i);
+			xy.x++;
 		}
 	}
 	pthread_exit(0);

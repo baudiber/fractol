@@ -53,7 +53,7 @@ int		main(int ac, char **av)
 	t_setup stp;
 	int		i;
 
-	if (ac > 3)
+	if (ac > 3 || ac < 2)
 		ft_errors(1);
 	else if (ac == 2 && ((ft_strcmp(av[1], "julia")) && (ft_strcmp(av[1], "mandelbrot")) && (ft_strcmp(av[1], "burningship")) && (ft_strcmp(av[1], "tricorn")) && (ft_strcmp(av[1], "multibrot3"))))
 		ft_errors(1);

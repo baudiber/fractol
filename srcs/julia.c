@@ -12,14 +12,12 @@
 
 #include "fractol.h"
 
-void	julia(t_xy xy, t_setup *stp, int tid)
+void	julia(t_xy *xy, t_setup *stp, int tid)
 {
 	double	rsqr;
 	double	isqr;
 	int		i;
 
-	stp->tmp[tid].z_r = xy.x / stp->tmp[tid].zoom + stp->tmp[tid].x1;
-	stp->tmp[tid].z_i = xy.y / stp->tmp[tid].zoom + stp->tmp[tid].y1;
 	rsqr = stp->tmp[tid].z_r * stp->tmp[tid].z_r;
 	isqr = stp->tmp[tid].z_i * stp->tmp[tid].z_i;
 	i = 0;
@@ -33,7 +31,10 @@ void	julia(t_xy xy, t_setup *stp, int tid)
 		isqr = SQR(stp->tmp[tid].z_i);
 		i++;
 	}
-	set_pixel(i, stp, tid, &xy);
+	if (stp->rainbow)
+		set_rainbow(i, stp, tid, xy);
+	else
+		set_pixel(i, stp, tid, xy);
 }
 
 void	*draw_julia(void *arg)
@@ -51,13 +52,15 @@ void	*draw_julia(void *arg)
 		if (pthread_equal(stp->tids[i], tid))
 			break ;
 	}
-	xy.y = -1;
-	while (++xy.y < HEIGHT)
+	xy.y = stp->prev.y;
+	while (++xy.y < HEIGHT + stp->prev.y)
 	{
-		xy.x = (WIDTH / MAX_THREADS) * i;
-		while (xy.x < (WIDTH / MAX_THREADS) * (i + 1))
+		xy.x = (WIDTH / MAX_THREADS) * i + stp->prev.x;
+		while (xy.x < (WIDTH / MAX_THREADS) * (i + 1) + stp->prev.x)
 		{
-			julia(xy, stp, i);
+			stp->tmp[i].z_r = xy.x / stp->tmp[i].zoom + stp->tmp[i].x1;
+			stp->tmp[i].z_i = xy.y / stp->tmp[i].zoom + stp->tmp[i].y1;
+			julia(&xy, stp, i);
 			xy.x++;
 		}
 	}
