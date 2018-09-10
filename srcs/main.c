@@ -31,11 +31,12 @@ void	which_frac(t_setup *stp)
 void	print_help(void)
 {
 	ft_putendl("~~~~~~~~~ HELP ~~~~~~~~~~");
-	ft_putendl("W/S keys: zoom");
+	ft_putendl("H key: turn off/on HUD");
 	ft_putendl("Scroll wheel & mouse 1&2: targeted zoom");
 	ft_putendl("Arrow keys: pan");
 	ft_putendl("I/K keys: add iterations");
 	ft_putendl("C key: rainbow colors");
+	ft_putendl("Esc: quit program");
 	ft_putendl("~~~~~~~~~~~~~~~~~~~~~~~~~");
 }
 

@@ -13,11 +13,11 @@
 #include "fractol.h"
 #include <stdio.h>
 
-int		mouse_move(int button, int x, int y, t_setup *stp)
+int		mouse(int button, int x, int y, t_setup *stp)
 {
 	if (y < 3)
 		return (0);
-	if (button == 1)
+	if (button == 1 && stp->frac.zoom <= 2000000000)
 	{
 		stp->prev.x += x / 5;
 		stp->prev.y += y / 5;
@@ -25,7 +25,7 @@ int		mouse_move(int button, int x, int y, t_setup *stp)
 		stp->prev.y *= 1.2;
 		stp->frac.zoom *= 1.2;
 	}
-	if (button == 2)
+	if (button == 2 && stp->frac.zoom > 20)
 	{
 		stp->prev.x -= x / 5;
 		stp->prev.y -= y / 5;
@@ -33,7 +33,7 @@ int		mouse_move(int button, int x, int y, t_setup *stp)
 		stp->prev.y *= 0.8;
 		stp->frac.zoom *= 0.8;
 	}
-	if (button == SCROLL_UP)
+	if (button == SCROLL_UP && stp->frac.zoom <= 2000000000)
 	{
 		stp->prev.x += x / 5;
 		stp->prev.y += y / 5;
@@ -41,7 +41,7 @@ int		mouse_move(int button, int x, int y, t_setup *stp)
 		stp->prev.y *= 1.2;
 		stp->frac.zoom *= 1.2;
 	}
-	if (button == SCROLL_DOWN)
+	if (button == SCROLL_DOWN && stp->frac.zoom > 20)
 	{
 		stp->prev.x -= x / 5;
 		stp->prev.y -= y / 5;
@@ -69,9 +69,11 @@ int		stp_key(int key, t_setup *stp)
 	if (key == ECHAP)
 		exit(0);
 	if (key == KEY_I)
-		stp->frac.iteration_max += 2;
+		stp->frac.iteration_max += 20;
 	if (key == KEY_K)
-		stp->frac.iteration_max -= 2;
+		stp->frac.iteration_max -= 20;
+	if (key == KEY_H)
+		stp->hud = (stp->hud) ? 0 : 1;
 	if (key == ARROW_UP)
 		stp->frac.y1 -= 0.1;
 	if (key == ARROW_DOWN)
@@ -82,18 +84,8 @@ int		stp_key(int key, t_setup *stp)
 		stp->frac.x1 += 0.1;
 	if (key == KEY_C)
 		stp->rainbow = (stp->rainbow) ? 0 : 1;
-	if (key == KEY_W)
-	{
-		stp->frac.x1 *= 1.2;
-		stp->frac.y1 *= 1.2;
-		stp->frac.zoom *= 1.2;
-	}
-	if (key == KEY_S)
-	{
-		stp->frac.x1 *= 0.8;
-		stp->frac.y1 *= 0.8;
-		stp->frac.zoom *= 0.8;
-	}
+	if (key == KEY_R)
+		init(stp);
 	draw(stp);
 	return (0);
 }

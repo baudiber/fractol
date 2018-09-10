@@ -24,7 +24,9 @@
 # define KEY_K 40
 # define KEY_W 13
 # define KEY_S 1
+# define KEY_H 4
 # define KEY_C 8
+# define KEY_R 15
 # define ARROW_UP 126
 # define ARROW_DOWN 125
 # define ARROW_LEFT 123
@@ -51,7 +53,7 @@ struct			s_frac
 {
 	double		x1;
 	double		y1;
-	int			zoom;
+	unsigned long int			zoom;
 	int 		iteration_max;
 	double		c_r;
 	double		c_i;
@@ -73,6 +75,7 @@ struct			s_setup
 	char		*win;	
 	char		*img_ptr;
 	int			rainbow;
+	int			hud;
 	int			*img;
 	int			bpx;
 	int			s_line;

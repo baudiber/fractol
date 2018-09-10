@@ -21,6 +21,22 @@ void	reset_img(int **img)
 		(*img)[i++] = 0;
 }
 
+void	info(t_setup *stp)
+{
+	mlx_string_put(stp->mlx, stp-> win, 5, 5, 0xFFFFFF, \
+		"Zoom: ");
+	if (stp->frac.zoom < 2000000000)
+		mlx_string_put(stp->mlx, stp->win, 60, 5, 0xFFFFFF, \
+			ft_itoa(stp->frac.zoom));
+	else
+		mlx_string_put(stp->mlx, stp->win, 60, 5, 0xFFFFFF, \
+			"MAX");
+	mlx_string_put(stp->mlx, stp-> win, 5, 30, 0xFFFFFF, \
+		"Iterations: ");
+	mlx_string_put(stp->mlx, stp->win, 120, 30, 0xFFFFFF, \
+		ft_itoa(stp->frac.iteration_max));
+}
+
 void	draw(t_setup *stp)
 {
 	int		i;
@@ -37,4 +53,6 @@ void	draw(t_setup *stp)
 	while (i < MAX_THREADS)
 		pthread_join(stp->tids[i++], NULL);	
 	mlx_put_image_to_window(stp->img, stp->win, stp->img_ptr, 0, 0);
+	if (stp->hud)
+		info(stp);
 }

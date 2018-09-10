@@ -12,12 +12,8 @@
 
 #include "fractol.h"
 
-void	init(t_setup *stp)
+void	frac_init(t_setup *stp)
 {
-	stp->frac.iteration_max = 150;
-	stp->rainbow = 0;
-	stp->prev.x = 0;
-	stp->prev.y = 0;
 	if (stp->av[0] == 'b')
 	{
 		stp->frac.x1 = -2.5;
@@ -31,19 +27,25 @@ void	init(t_setup *stp)
 		stp->frac.zoom = 150;
 	}
 	if (stp->av[0] == 'm')
-	{
 		stp->frac.x1 = -2.3;
-		stp->frac.y1 = -1.2;
-		stp->frac.zoom = 200;
-	}
 	if (stp->av[0] == 'j')
 	{
 		stp->frac.x1 = -1.7;
-		stp->frac.y1 = -1.2;
-		stp->frac.zoom = 200;
 		stp->frac.c_r = 0.285;
 		stp->frac.c_i = 0.01;
 	}
+}
+
+void	init(t_setup *stp)
+{
+	stp->frac.iteration_max = 150;
+	stp->rainbow = 0;
+	stp->hud = 1;
+	stp->prev.x = 0;
+	stp->prev.y = 0;
+	stp->frac.zoom = 200;
+	stp->frac.y1 = -1.2;
+	frac_init(stp);
 }
 
 void	init_all(t_setup *stp)
