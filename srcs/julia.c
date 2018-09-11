@@ -21,7 +21,7 @@ void	julia(t_xy *xy, t_setup *stp, int tid)
 	rsqr = stp->tmp[tid].z_r * stp->tmp[tid].z_r;
 	isqr = stp->tmp[tid].z_i * stp->tmp[tid].z_i;
 	i = 0;
-	while (rsqr + isqr < 4 && i < stp->tmp[tid].iteration_max)
+	while (rsqr + isqr < 4 && i < stp->tmp[tid].max_iter)
 	{
 		stp->tmp[tid].tmp = stp->tmp[tid].z_r;
 		stp->tmp[tid].z_r = rsqr - isqr + stp->tmp[tid].c_r;
@@ -42,16 +42,9 @@ void	*draw_julia(void *arg)
 	t_setup		*stp;
 	t_xy		xy;
 	int			i;
-	pthread_t	tid;
 
 	stp = (t_setup *)arg;
-	i = -1;
-	tid = pthread_self();
-	while (++i < MAX_THREADS)
-	{
-		if (pthread_equal(stp->tids[i], tid))
-			break ;
-	}
+	i = find_thread(stp);
 	xy.y = stp->prev.y;
 	while (++xy.y < HEIGHT + stp->prev.y)
 	{

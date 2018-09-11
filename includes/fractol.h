@@ -54,7 +54,7 @@ struct			s_frac
 	double		x1;
 	double		y1;
 	unsigned long int			zoom;
-	int 		iteration_max;
+	int 		max_iter;
 	double		c_r;
 	double		c_i;
 	double		z_r;
@@ -74,6 +74,7 @@ struct			s_setup
 	char		*mlx;
 	char		*win;	
 	char		*img_ptr;
+	int			degrad;
 	int			rainbow;
 	int			hud;
 	int			*img;
@@ -87,7 +88,7 @@ void			init_all(t_setup *stp);
 void			fractol(t_setup *stp);
 void			display_splash(t_setup *stp);
 int				stp_key(int key, t_setup *stp);
-int				mouse_move(int button, int x, int y, t_setup *stp);
+int				mouse(int button, int x, int y, t_setup *stp);
 int				julia_mouse(int x, int y, t_setup *stp);
 void			draw(t_setup *stp);
 void			init(t_setup *stp);
@@ -99,5 +100,6 @@ void			*draw_multibrot3(void *arg);
 void			*draw_multibrot(void *arg);
 void			set_pixel(int i, t_setup *stp, int tid, t_xy *xy);
 void			set_rainbow(int i, t_setup *stp, int tid, t_xy *xy);
+int				find_thread(t_setup *stp);
 
 #endif

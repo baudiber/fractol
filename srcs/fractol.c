@@ -28,6 +28,6 @@ void	fractol(t_setup *stp)
 	mlx_hook(stp->win, 17, 0L, quitfdf, NULL);
 	if (stp->av[0] == 'j')
 		mlx_hook(stp->win, 6, (1L << 6), julia_mouse, stp);
-	mlx_mouse_hook(stp->win, mouse_move, stp);
+	mlx_mouse_hook(stp->win, mouse, stp);
 	mlx_loop(stp->mlx);
 }

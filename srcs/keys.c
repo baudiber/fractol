@@ -13,44 +13,37 @@
 #include "fractol.h"
 #include <stdio.h>
 
+void	zoom_in(t_setup *stp, int x, int y)
+{
+		stp->prev.x += x / 5;
+		stp->prev.y += y / 5;
+		stp->prev.x *= 1.2;
+		stp->prev.y *= 1.2;
+		stp->frac.zoom *= 1.2;
+}
+
+void	zoom_out(t_setup *stp, int x, int y)
+{
+		stp->prev.x -= x / 5;
+		stp->prev.y -= y / 5;
+		stp->prev.x *= 0.8;
+		stp->prev.y *= 0.8;
+		stp->frac.zoom *= 0.8;
+}
+
 int		mouse(int button, int x, int y, t_setup *stp)
 {
 	if (y < 3)
 		return (0);
 	if (button == 1 && stp->frac.zoom <= 2000000000)
-	{
-		stp->prev.x += x / 5;
-		stp->prev.y += y / 5;
-		stp->prev.x *= 1.2;
-		stp->prev.y *= 1.2;
-		stp->frac.zoom *= 1.2;
-	}
-	if (button == 2 && stp->frac.zoom > 20)
-	{
-		stp->prev.x -= x / 5;
-		stp->prev.y -= y / 5;
-		stp->prev.x *= 0.8;
-		stp->prev.y *= 0.8;
-		stp->frac.zoom *= 0.8;
-	}
+		zoom_in(stp, x, y);
+	if (button == 2 && stp->frac.zoom >= 20)
+		zoom_out(stp, x, y);
 	if (button == SCROLL_UP && stp->frac.zoom <= 2000000000)
-	{
-		stp->prev.x += x / 5;
-		stp->prev.y += y / 5;
-		stp->prev.x *= 1.2;
-		stp->prev.y *= 1.2;
-		stp->frac.zoom *= 1.2;
-	}
-	if (button == SCROLL_DOWN && stp->frac.zoom > 20)
-	{
-		stp->prev.x -= x / 5;
-		stp->prev.y -= y / 5;
-		stp->prev.x *= 0.8;
-		stp->prev.y *= 0.8;
-		stp->frac.zoom *= 0.8;
-	}
+		zoom_in(stp, x, y);
+	if (button == SCROLL_DOWN && stp->frac.zoom >= 20)
+		zoom_out(stp, x, y);
 	draw(stp);
-//	printf("%d\n", button);
 	return (0);
 }
 
@@ -66,25 +59,25 @@ int		julia_mouse(int x, int y, t_setup *stp)
 
 int		stp_key(int key, t_setup *stp)
 {
-	if (key == ECHAP)
-		exit(0);
-	if (key == KEY_I)
-		stp->frac.iteration_max += 20;
-	if (key == KEY_K)
-		stp->frac.iteration_max -= 20;
-	if (key == KEY_H)
-		stp->hud = (stp->hud) ? 0 : 1;
 	if (key == ARROW_UP)
 		stp->frac.y1 -= 0.1;
-	if (key == ARROW_DOWN)
+	else if (key == ARROW_DOWN)
 		stp->frac.y1 += 0.1;
-	if (key == ARROW_LEFT)
+	else if (key == ARROW_LEFT)
 		stp->frac.x1 -= 0.1;
-	if (key == ARROW_RIGHT)
+	else if (key == ARROW_RIGHT)
 		stp->frac.x1 += 0.1;
-	if (key == KEY_C)
+	else if (key == ECHAP)
+		exit(0);
+	else if (key == KEY_I && stp->frac.max_iter <= 1000)
+		stp->frac.max_iter += 20;
+	else if (key == KEY_K && stp->frac.max_iter > 20)
+		stp->frac.max_iter -= 20;
+	else if (key == KEY_H)
+		stp->hud = (stp->hud) ? 0 : 1;
+	else if (key == KEY_C)
 		stp->rainbow = (stp->rainbow) ? 0 : 1;
-	if (key == KEY_R)
+	else if (key == KEY_R)
 		init(stp);
 	draw(stp);
 	return (0);

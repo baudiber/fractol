@@ -23,18 +23,22 @@ void	reset_img(int **img)
 
 void	info(t_setup *stp)
 {
-	mlx_string_put(stp->mlx, stp-> win, 5, 5, 0xFFFFFF, \
-		"Zoom: ");
-	if (stp->frac.zoom < 2000000000)
+	mlx_string_put(stp->mlx, stp-> win, 5, 5, 0xFFFFFF, "Zoom: ");
+	if (stp->frac.zoom < 2000000000 && stp->frac.zoom > 20)
 		mlx_string_put(stp->mlx, stp->win, 60, 5, 0xFFFFFF, \
 			ft_itoa(stp->frac.zoom));
+	else if (stp->frac.zoom <= 20)
+		mlx_string_put(stp->mlx, stp->win, 60, 5, 0xFFFFFF, "MIN");
+	else	
+		mlx_string_put(stp->mlx, stp->win, 60, 5, 0xFFFFFF, "MAX");
+	mlx_string_put(stp->mlx, stp-> win, 5, 30, 0xFFFFFF, "Iterations: ");
+	if (stp->frac.max_iter < 1000 && stp->frac.max_iter > 20)
+		mlx_string_put(stp->mlx, stp->win, 120, 30, 0xFFFFFF, \
+		ft_itoa(stp->frac.max_iter));
+	else if (stp->frac.max_iter <= 20)
+		mlx_string_put(stp->mlx, stp->win, 120, 30, 0xFFFFFF, "MIN");
 	else
-		mlx_string_put(stp->mlx, stp->win, 60, 5, 0xFFFFFF, \
-			"MAX");
-	mlx_string_put(stp->mlx, stp-> win, 5, 30, 0xFFFFFF, \
-		"Iterations: ");
-	mlx_string_put(stp->mlx, stp->win, 120, 30, 0xFFFFFF, \
-		ft_itoa(stp->frac.iteration_max));
+		mlx_string_put(stp->mlx, stp->win, 120, 30, 0xFFFFFF, "MAX");
 }
 
 void	draw(t_setup *stp)
@@ -42,6 +46,8 @@ void	draw(t_setup *stp)
 	int		i;
 
 	reset_img(&stp->img);
+	if (stp->rainbow)
+		stp->degrad = stp->frac.max_iter / 7;
 	i = 0;
 	while (i < MAX_THREADS)
 	{

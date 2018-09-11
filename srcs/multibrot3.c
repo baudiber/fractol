@@ -9,7 +9,7 @@ void	multibrot3(t_xy *xy, t_setup *stp, int tid)
 	rsqr = 0;
 	isqr = 0;
 	i = 0;
-	while (rsqr + isqr < 4 && i < stp->tmp[tid].iteration_max)
+	while (rsqr + isqr < 4 && i < stp->tmp[tid].max_iter)
 	{
 		stp->tmp[tid].tmp = (rsqr * stp->tmp[tid].z_r) - 3 * stp->tmp[tid].z_r * isqr + stp->tmp[tid].c_r;
 		stp->tmp[tid].z_i = 3 * rsqr * stp->tmp[tid].z_i - (isqr * stp->tmp[tid].z_i) + stp->tmp[tid].c_i;
@@ -26,19 +26,12 @@ void	multibrot3(t_xy *xy, t_setup *stp, int tid)
 
 void	*draw_multibrot3(void *arg)
 {
-	t_setup *stp = (t_setup *)arg;
+	t_setup *stp;
 	t_xy	xy;
 	int		i;
-	pthread_t tid;
 
-	i = 0;
-	tid = pthread_self();	
-	while (i < MAX_THREADS)
-	{
-		if (pthread_equal(stp->tids[i], tid))
-			break;
-		i++;
-	}
+	stp = (t_setup *)arg;
+	i = find_thread(stp);
 	xy.y = stp->prev.y;
 	while (++xy.y < HEIGHT + stp->prev.y)
 	{

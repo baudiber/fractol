@@ -38,7 +38,7 @@ void	frac_init(t_setup *stp)
 
 void	init(t_setup *stp)
 {
-	stp->frac.iteration_max = 150;
+	stp->frac.max_iter = 155;
 	stp->rainbow = 0;
 	stp->hud = 1;
 	stp->prev.x = 0;
@@ -46,6 +46,11 @@ void	init(t_setup *stp)
 	stp->frac.zoom = 200;
 	stp->frac.y1 = -1.2;
 	frac_init(stp);
+	if (stp->av[3] == 't')
+	{
+		stp->frac.x1 = -1.7;
+		stp->frac.max_iter = 45;
+	}
 }
 
 void	init_all(t_setup *stp)
