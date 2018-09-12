@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 22:53:30 by baudiber          #+#    #+#             */
-/*   Updated: 2018/09/12 15:30:16 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/09/12 16:56:23 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 
 # include "mlx.h"
 # include <stdio.h>
-# include "libft.h"
+# include "../libft/libft.h"
 # include <math.h>
 # include <pthread.h>
 
