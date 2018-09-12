@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 23:00:31 by baudiber          #+#    #+#             */
-/*   Updated: 2018/09/05 17:31:51 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/09/12 15:17:36 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,9 @@ void	init(t_setup *stp)
 void	init_all(t_setup *stp)
 {
 	stp->mlx = mlx_init();
-	stp->win = mlx_new_window(stp->mlx, WIDTH, HEIGHT, stp->av ? stp->av : "fractol");
+	stp->win = mlx_new_window(stp->mlx, WIDTH, HEIGHT, \
+		stp->av ? stp->av : "fractol");
 	stp->img_ptr = mlx_new_image(stp->mlx, WIDTH, HEIGHT);
-	stp->img = (int *)mlx_get_data_addr(stp->img_ptr, &stp->bpx, &stp->s_line, &stp->ed);
+	stp->img = (int *)mlx_get_data_addr(stp->img_ptr, \
+		&stp->bpx, &stp->s_line, &stp->ed);
 }

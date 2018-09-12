@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 22:52:59 by baudiber          #+#    #+#             */
-/*   Updated: 2018/09/05 17:28:27 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/09/12 15:19:28 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,5 +89,5 @@ int		main(int ac, char **av)
 	print_help();
 	init_all(&stp);
 	fractol(&stp);
-	return (0);	
+	return (0);
 }

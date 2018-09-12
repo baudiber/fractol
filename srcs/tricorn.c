@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tricorn.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/09/12 15:22:44 by baudiber          #+#    #+#             */
+/*   Updated: 2018/09/12 15:22:57 by baudiber         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 void	tricorn(t_xy *xy, t_setup *stp, int tid)
@@ -12,7 +24,8 @@ void	tricorn(t_xy *xy, t_setup *stp, int tid)
 	while (rsqr + isqr < 4 && i < stp->tmp[tid].max_iter)
 	{
 		stp->tmp[tid].tmp = rsqr - isqr + stp->tmp[tid].c_r;
-		stp->tmp[tid].z_i = -2 * stp->tmp[tid].z_r * stp->tmp[tid].z_i + stp->tmp[tid].c_i;
+		stp->tmp[tid].z_i = -2 * stp->tmp[tid].z_r * stp->tmp[tid].z_i \
+			+ stp->tmp[tid].c_i;
 		stp->tmp[tid].z_r = stp->tmp[tid].tmp;
 		rsqr = SQR(stp->tmp[tid].z_r);
 		isqr = SQR(stp->tmp[tid].z_i);
@@ -27,7 +40,7 @@ void	tricorn(t_xy *xy, t_setup *stp, int tid)
 void	*draw_tricorn(void *arg)
 {
 	t_setup *stp;
-	t_xy		xy;
+	t_xy	xy;
 	int		i;
 
 	stp = (t_setup *)arg;

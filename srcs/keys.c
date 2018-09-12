@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 23:27:34 by baudiber          #+#    #+#             */
-/*   Updated: 2018/07/11 23:20:41 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/09/12 15:17:56 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,20 @@
 
 void	zoom_in(t_setup *stp, int x, int y)
 {
-		stp->prev.x += x / 5;
-		stp->prev.y += y / 5;
-		stp->prev.x *= 1.2;
-		stp->prev.y *= 1.2;
-		stp->frac.zoom *= 1.2;
+	stp->prev.x += x / 5;
+	stp->prev.y += y / 5;
+	stp->prev.x *= 1.2;
+	stp->prev.y *= 1.2;
+	stp->frac.zoom *= 1.2;
 }
 
 void	zoom_out(t_setup *stp, int x, int y)
 {
-		stp->prev.x -= x / 5;
-		stp->prev.y -= y / 5;
-		stp->prev.x *= 0.8;
-		stp->prev.y *= 0.8;
-		stp->frac.zoom *= 0.8;
+	stp->prev.x -= x / 5;
+	stp->prev.y -= y / 5;
+	stp->prev.x *= 0.8;
+	stp->prev.y *= 0.8;
+	stp->frac.zoom *= 0.8;
 }
 
 int		mouse(int button, int x, int y, t_setup *stp)

@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 22:53:30 by baudiber          #+#    #+#             */
-/*   Updated: 2018/09/05 17:30:57 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/09/12 15:30:16 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,9 @@
 # include <math.h>
 # include <pthread.h>
 
-typedef struct s_setup t_setup;
-typedef struct s_frac t_frac;
-typedef struct s_xy t_xy;
-
+typedef struct s_setup	t_setup;
+typedef struct s_frac	t_frac;
+typedef struct s_xy		t_xy;
 
 struct			s_xy
 {
@@ -51,37 +50,37 @@ struct			s_xy
 
 struct			s_frac
 {
-	double		x1;
-	double		y1;
-	unsigned long int			zoom;
-	int 		max_iter;
-	double		c_r;
-	double		c_i;
-	double		z_r;
-	double		tmp;
-	double		z_i;
+	double				x1;
+	double				y1;
+	unsigned long int	zoom;
+	int					max_iter;
+	double				c_r;
+	double				c_i;
+	double				z_r;
+	double				tmp;
+	double				z_i;
 };
 
 struct			s_setup
 {
 	pthread_t		tids[MAX_THREADS];
 	pthread_attr_t	attr;
-	t_frac 		tmp[MAX_THREADS];
-	t_frac 		frac;
-	t_xy		prev;
-	void		*(*ft_frac)();
-	char		*av;
-	char		*mlx;
-	char		*win;	
-	char		*img_ptr;
-	int			degrad;
-	int			rainbow;
-	int			hud;
-	int			*img;
-	int			bpx;
-	int			s_line;
-	int			ed;
-	int			n;
+	t_frac			tmp[MAX_THREADS];
+	t_frac			frac;
+	t_xy			prev;
+	void			*(*ft_frac)();
+	char			*av;
+	char			*mlx;
+	char			*win;
+	char			*img_ptr;
+	int				degrad;
+	int				rainbow;
+	int				hud;
+	int				*img;
+	int				bpx;
+	int				s_line;
+	int				ed;
+	int				n;
 };
 
 void			init_all(t_setup *stp);
