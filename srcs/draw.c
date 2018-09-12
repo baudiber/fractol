@@ -21,6 +21,7 @@ void	reset_img(int **img)
 		(*img)[i++] = 0;
 }
 
+//free ft_itoa
 void	info(t_setup *stp)
 {
 	mlx_string_put(stp->mlx, stp-> win, 5, 5, 0xFFFFFF, "Zoom: ");

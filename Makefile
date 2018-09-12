@@ -29,6 +29,7 @@ SRC			=	main.c \
 				tricorn.c \
 				multibrot.c \
 				multibrot3.c \
+				threads.c \
 				pixel.c
 
 CC 			=	gcc

@@ -37,21 +37,6 @@ void	bship(t_xy *xy, t_setup *stp, int tid)
 		set_pixel(i, stp, tid, xy);
 }
 
-int		find_thread(t_setup *stp)
-{
-	pthread_t	tid;
-	int			i;
-
-	tid = pthread_self();
-	i = -1;
-	while (++i < MAX_THREADS)
-	{
-		if (pthread_equal(stp->tids[i], tid))
-			break ;
-	}
-	return (i);
-}
-
 void	*draw_bship(void *arg)
 {
 	t_setup		*stp;
