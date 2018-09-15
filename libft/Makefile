@@ -6,6 +6,7 @@
 #    By: baudiber <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/08 16:47:49 by baudiber          #+#    #+#              #
+#    Updated: 2018/09/15 14:50:18 by baudiber         ###   ########.fr        #
 #    Updated: 2018/04/28 17:50:49 by baudiber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
@@ -88,6 +89,9 @@ SRC = ft_memset.c \
 	  ft_matrixlen.c \
 	  ft_newlst.c \
 	  ft_strchr_sec.c \
+	  ft_squaren_d.c \
+	  ft_square_d.c \
+	  ft_abs_d.c \
 	  get_next_line.c \
 	  ft_get_hexa.c \
 	  ft_getcolor.c \

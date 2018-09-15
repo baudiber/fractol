@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 22:53:30 by baudiber          #+#    #+#             */
-/*   Updated: 2018/09/12 16:56:23 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/09/15 14:14:36 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define FRACTOL_H
 # define WIDTH 640
 # define HEIGHT 480
-# define ABS(x) ((x > 0) ? x : -x)
-# define SQR(x) (x * x)
 # define MAX_THREADS 32
 # define SCROLL_DOWN 5
 # define SCROLL_UP 4

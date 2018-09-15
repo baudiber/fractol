@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/08 16:44:49 by baudiber          #+#    #+#             */
-/*   Updated: 2018/06/26 16:00:58 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/09/15 14:50:35 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,9 @@ char			*ft_strjoinfree(char *s1, char *s2, int val);
 t_list			*ft_newlst(void const *content, size_t content_size);
 char			*ft_strchr_sec(const char *s, int c);
 int				get_next_line(const int fd, char **line);
+double			ft_squaren_d(double src, int n);
+double			ft_square_d(double src);
+double			ft_abs_d(double src);
 unsigned int	ft_get_hexa(char *str);
 unsigned int	ft_strtoui(char *str, char *base);
 int				ft_atoi_base(char *str, char *base);

@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 15:22:44 by baudiber          #+#    #+#             */
-/*   Updated: 2018/09/12 15:22:57 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/09/15 14:11:27 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	tricorn(t_xy *xy, t_setup *stp, int tid)
 		stp->tmp[tid].z_i = -2 * stp->tmp[tid].z_r * stp->tmp[tid].z_i \
 			+ stp->tmp[tid].c_i;
 		stp->tmp[tid].z_r = stp->tmp[tid].tmp;
-		rsqr = SQR(stp->tmp[tid].z_r);
-		isqr = SQR(stp->tmp[tid].z_i);
+		rsqr = ft_square_d(stp->tmp[tid].z_r);
+		isqr = ft_square_d(stp->tmp[tid].z_i);
 		i++;
 	}
 	if (stp->rainbow)

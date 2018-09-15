@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 19:34:14 by baudiber          #+#    #+#             */
-/*   Updated: 2018/08/06 19:55:41 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/09/15 14:52:00 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ void	bship(t_xy *xy, t_setup *stp, int tid)
 	while (rsqr + isqr < (1 << 16) && i < stp->tmp[tid].max_iter)
 	{
 		stp->tmp[tid].tmp = rsqr - isqr + stp->tmp[tid].c_r;
-		stp->tmp[tid].z_i = ABS(2 * stp->tmp[tid].z_r * stp->tmp[tid].z_i) \
+		stp->tmp[tid].z_i = ft_abs_d(2 * stp->tmp[tid].z_r * stp->tmp[tid].z_i)\
 			+ stp->tmp[tid].c_i;
-		stp->tmp[tid].z_r = ABS(stp->tmp[tid].tmp);
-		rsqr = SQR(stp->tmp[tid].z_r);
-		isqr = SQR(stp->tmp[tid].z_i);
+		stp->tmp[tid].z_r = ft_abs_d(stp->tmp[tid].tmp);
+		rsqr = ft_square_d(stp->tmp[tid].z_r);
+		isqr = ft_square_d(stp->tmp[tid].z_i);
 		i++;
 	}
 	if (stp->rainbow)

@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 22:35:28 by baudiber          #+#    #+#             */
-/*   Updated: 2018/09/12 15:25:25 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/09/15 14:08:35 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	mandel(t_xy *xy, t_setup *stp, int tid)
 		stp->tmp[tid].z_i += stp->tmp[tid].z_i;
 		stp->tmp[tid].z_i += stp->tmp[tid].c_i;
 		stp->tmp[tid].z_r = rsqr - isqr + stp->tmp[tid].c_r;
-		rsqr = SQR(stp->tmp[tid].z_r);
-		isqr = SQR(stp->tmp[tid].z_i);
+		rsqr = ft_square_d(stp->tmp[tid].z_r);
+		isqr = ft_square_d(stp->tmp[tid].z_i);
 		i++;
 	}
 	if (stp->rainbow)
