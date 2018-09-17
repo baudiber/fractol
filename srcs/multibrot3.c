@@ -28,8 +28,8 @@ void	multibrot3(t_xy *xy, t_setup *stp, int tid)
 		stp->tmp[tid].z_i = 3 * rsqr * stp->tmp[tid].z_i \
 			- (isqr * stp->tmp[tid].z_i) + stp->tmp[tid].c_i;
 		stp->tmp[tid].z_r = stp->tmp[tid].tmp;
-		rsqr = ft_square_d(stp->tmp[tid].z_r);
-		isqr = ft_square_d(stp->tmp[tid].z_i);
+		rsqr = pow(stp->tmp[tid].z_r, 2);
+		isqr = pow(stp->tmp[tid].z_i, 2);
 		i++;
 	}
 	if (stp->rainbow)

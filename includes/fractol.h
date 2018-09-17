@@ -30,7 +30,7 @@
 # define ARROW_LEFT 123
 # define ARROW_RIGHT 124
 
-# include "mlx.h"
+# include "../minilibx/minilibx_mac/mlx.h"
 # include <stdio.h>
 # include "../libft/libft.h"
 # include <math.h>

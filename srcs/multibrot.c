@@ -25,15 +25,15 @@ void	multibrot(t_xy *xy, t_setup *stp, int tid)
 	i = 0;
 	while (rsqr + isqr < 8 && i++ < stp->tmp[tid].max_iter)
 	{
-		stp->tmp[tid].tmp = ft_squaren_d((rsqr + isqr), (n / 2)) \
+		stp->tmp[tid].tmp = pow((rsqr + isqr), (n / 2)) \
 			* cos(n * atan2(stp->tmp[tid].z_i, stp->tmp[tid].z_r)) \
 			+ stp->tmp[tid].c_r;
-		stp->tmp[tid].z_i = ft_squaren_d((rsqr + isqr), (n / 2)) \
+		stp->tmp[tid].z_i = pow((rsqr + isqr), (n / 2)) \
 			* sin(n * atan2(stp->tmp[tid].z_i, stp->tmp[tid].z_r)) \
 			+ stp->tmp[tid].c_i;
 		stp->tmp[tid].z_r = stp->tmp[tid].tmp;
-		rsqr = ft_square_d(stp->tmp[tid].z_r);
-		isqr = ft_square_d(stp->tmp[tid].z_i);
+		rsqr = pow(stp->tmp[tid].z_r, 2);
+		isqr = pow(stp->tmp[tid].z_i, 2);
 	}
 	if (stp->rainbow)
 		set_rainbow(i, stp, tid, xy);

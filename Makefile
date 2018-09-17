@@ -34,7 +34,7 @@ SRC			=	main.c \
 
 CC 			=	gcc
 FLAGS		=	-Wall -Werror -Wextra -pthread
-INCLUDES	=	-I $(INC_DIR)
+INCLUDES	=	-I $(INC_DIR) -I $(MLX_DIR)
 HEADER_H	=	$(INC_DIR)/$(NAME).h
 OBJ 		=	$(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 MFLAGS		=	-lm -lmlx -framework OpenGL -framework Appkit

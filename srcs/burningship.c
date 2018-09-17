@@ -24,11 +24,11 @@ void	bship(t_xy *xy, t_setup *stp, int tid)
 	while (rsqr + isqr < (1 << 16) && i < stp->tmp[tid].max_iter)
 	{
 		stp->tmp[tid].tmp = rsqr - isqr + stp->tmp[tid].c_r;
-		stp->tmp[tid].z_i = ft_abs_d(2 * stp->tmp[tid].z_r * stp->tmp[tid].z_i)\
+		stp->tmp[tid].z_i = fabs(2 * stp->tmp[tid].z_r * stp->tmp[tid].z_i)\
 			+ stp->tmp[tid].c_i;
-		stp->tmp[tid].z_r = ft_abs_d(stp->tmp[tid].tmp);
-		rsqr = ft_square_d(stp->tmp[tid].z_r);
-		isqr = ft_square_d(stp->tmp[tid].z_i);
+		stp->tmp[tid].z_r = fabs(stp->tmp[tid].tmp);
+		rsqr = pow(stp->tmp[tid].z_r, 2);
+		isqr = pow(stp->tmp[tid].z_i, 2);
 		i++;
 	}
 	if (stp->rainbow)

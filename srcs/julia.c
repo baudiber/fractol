@@ -27,8 +27,8 @@ void	julia(t_xy *xy, t_setup *stp, int tid)
 		stp->tmp[tid].z_r = rsqr - isqr + stp->tmp[tid].c_r;
 		stp->tmp[tid].z_i = 2 * stp->tmp[tid].z_i * stp->tmp[tid].tmp \
 			+ stp->tmp[tid].c_i;
-		rsqr = ft_square_d(stp->tmp[tid].z_r);
-		isqr = ft_square_d(stp->tmp[tid].z_i);
+		rsqr = pow(stp->tmp[tid].z_r, 2);
+		isqr = pow(stp->tmp[tid].z_i, 2);
 		i++;
 	}
 	if (stp->rainbow)
