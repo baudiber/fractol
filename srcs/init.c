@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 23:00:31 by baudiber          #+#    #+#             */
-/*   Updated: 2018/09/12 15:17:36 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/09/17 19:13:05 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	init(t_setup *stp)
 {
 	stp->frac.max_iter = 155;
 	stp->rainbow = 0;
+	stp->juliamouse = 1;
 	stp->hud = 1;
 	stp->prev.x = 0;
 	stp->prev.y = 0;

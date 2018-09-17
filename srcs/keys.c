@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 23:27:34 by baudiber          #+#    #+#             */
-/*   Updated: 2018/09/12 15:17:56 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/09/17 22:00:33 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int		mouse(int button, int x, int y, t_setup *stp)
 
 int		julia_mouse(int x, int y, t_setup *stp)
 {
-	if (y < 3 || x < 0 || x > WIDTH || y > HEIGHT)
+	if (!stp->juliamouse || y < 3 || x < 0 || x > WIDTH || y > HEIGHT)
 		return (0);
 	stp->frac.c_r = x * (3.0 / WIDTH) - 1.5;
 	stp->frac.c_i = y * (3.0 / HEIGHT) - 1.5;
@@ -60,13 +60,15 @@ int		julia_mouse(int x, int y, t_setup *stp)
 int		stp_key(int key, t_setup *stp)
 {
 	if (key == ARROW_UP)
-		stp->frac.y1 -= 0.1;
+		stp->prev.y -= 10;
 	else if (key == ARROW_DOWN)
-		stp->frac.y1 += 0.1;
+		stp->prev.y += 10;
 	else if (key == ARROW_LEFT)
-		stp->frac.x1 -= 0.1;
+		stp->prev.x -= 10;
 	else if (key == ARROW_RIGHT)
-		stp->frac.x1 += 0.1;
+		stp->prev.x += 10;
+	else if (key == SPACE)
+		stp->juliamouse = (stp->juliamouse) ? 0 : 1;	
 	else if (key == ECHAP)
 		exit(0);
 	else if (key == KEY_I && stp->frac.max_iter <= 1000)

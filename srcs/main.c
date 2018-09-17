@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 22:52:59 by baudiber          #+#    #+#             */
-/*   Updated: 2018/09/12 15:19:28 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/09/17 22:10:41 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	print_help(void)
 	ft_putendl("H key: turn off/on HUD");
 	ft_putendl("Scroll wheel & mouse 1&2: targeted zoom");
 	ft_putendl("Arrow keys: pan");
+	ft_putendl("Space: freeze julia");
 	ft_putendl("I/K keys: add iterations");
 	ft_putendl("C key: rainbow colors");
 	ft_putendl("R key: reset view");

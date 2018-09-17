@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 19:34:14 by baudiber          #+#    #+#             */
-/*   Updated: 2018/09/15 14:52:00 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/09/17 19:34:03 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@ void	bship(t_xy *xy, t_setup *stp, int tid)
 	double	isqr;
 	int		i;
 
-	rsqr = stp->tmp[tid].z_r * stp->tmp[tid].z_r;
-	isqr = stp->tmp[tid].z_i * stp->tmp[tid].z_i;
 	i = 0;
+	rsqr = 0;
+	isqr = 0;
 	while (rsqr + isqr < (1 << 16) && i < stp->tmp[tid].max_iter)
 	{
 		stp->tmp[tid].tmp = rsqr - isqr + stp->tmp[tid].c_r;
 		stp->tmp[tid].z_i = fabs(2 * stp->tmp[tid].z_r * stp->tmp[tid].z_i)\
 			+ stp->tmp[tid].c_i;
 		stp->tmp[tid].z_r = fabs(stp->tmp[tid].tmp);
-		rsqr = pow(stp->tmp[tid].z_r, 2);
-		isqr = pow(stp->tmp[tid].z_i, 2);
+		rsqr = stp->tmp[tid].z_r * stp->tmp[tid].z_r;
+		isqr = stp->tmp[tid].z_i * stp->tmp[tid].z_i;
 		i++;
 	}
 	if (stp->rainbow)

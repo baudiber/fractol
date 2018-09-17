@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 23:05:57 by baudiber          #+#    #+#             */
-/*   Updated: 2018/09/12 15:06:38 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/09/17 20:24:12 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int		quitfdf(void)
 void	fractol(t_setup *stp)
 {
 	init(stp);
-	draw(stp);
+//	draw(stp);
+	fractal_tree(stp);
 	mlx_key_hook(stp->win, stp_key, stp);
 	mlx_hook(stp->win, 17, 0L, quitfdf, NULL);
 	if (stp->av[0] == 'j')

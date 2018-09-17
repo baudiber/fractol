@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 22:53:30 by baudiber          #+#    #+#             */
-/*   Updated: 2018/09/15 14:14:36 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/09/17 22:05:10 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # define SCROLL_DOWN 5
 # define SCROLL_UP 4
 # define ECHAP 53
+# define SPACE 49
 # define KEY_I 34
 # define KEY_K 40
 # define KEY_W 13
@@ -39,6 +40,8 @@
 typedef struct s_setup	t_setup;
 typedef struct s_frac	t_frac;
 typedef struct s_xy		t_xy;
+typedef struct s_pt		t_pt;
+typedef struct s_bres	t_bres;
 
 struct			s_xy
 {
@@ -59,6 +62,25 @@ struct			s_frac
 	double				z_i;
 };
 
+struct				s_pt
+{
+	float			x;
+	float			y;
+	unsigned int	color;
+};
+
+struct				s_bres
+{
+	int				cumul;
+	int				i;
+	int				x;
+	int				y;
+	int				dx;
+	int				dy;
+	int				xinc;
+	int				yinc;
+};
+
 struct			s_setup
 {
 	pthread_t		tids[MAX_THREADS];
@@ -74,6 +96,7 @@ struct			s_setup
 	int				degrad;
 	int				rainbow;
 	int				hud;
+	int				juliamouse;
 	int				*img;
 	int				bpx;
 	int				s_line;
@@ -98,5 +121,7 @@ void			*draw_multibrot(void *arg);
 void			set_pixel(int i, t_setup *stp, int tid, t_xy *xy);
 void			set_rainbow(int i, t_setup *stp, int tid, t_xy *xy);
 int				find_thread(t_setup *stp);
+void			ft_bresenham(t_pt p1, t_pt p2, t_bres *bres, int **img);
+void			fractal_tree(t_setup *stp);
 
 #endif

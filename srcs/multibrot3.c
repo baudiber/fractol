@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 15:21:50 by baudiber          #+#    #+#             */
-/*   Updated: 2018/09/15 14:09:51 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/09/17 19:35:00 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	multibrot3(t_xy *xy, t_setup *stp, int tid)
 		stp->tmp[tid].z_i = 3 * rsqr * stp->tmp[tid].z_i \
 			- (isqr * stp->tmp[tid].z_i) + stp->tmp[tid].c_i;
 		stp->tmp[tid].z_r = stp->tmp[tid].tmp;
-		rsqr = pow(stp->tmp[tid].z_r, 2);
-		isqr = pow(stp->tmp[tid].z_i, 2);
+		rsqr = stp->tmp[tid].z_r * stp->tmp[tid].z_r;
+		isqr = stp->tmp[tid].z_i * stp->tmp[tid].z_i;
 		i++;
 	}
 	if (stp->rainbow)

@@ -89,9 +89,6 @@ SRC = ft_memset.c \
 	  ft_matrixlen.c \
 	  ft_newlst.c \
 	  ft_strchr_sec.c \
-	  ft_squaren_d.c \
-	  ft_square_d.c \
-	  ft_abs_d.c \
 	  get_next_line.c \
 	  ft_get_hexa.c \
 	  ft_getcolor.c \

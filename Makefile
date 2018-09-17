@@ -6,7 +6,7 @@
 #    By: baudiber <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/29 00:57:22 by baudiber          #+#    #+#              #
-#    Updated: 2018/08/06 19:56:03 by baudiber         ###   ########.fr        #
+#    Updated: 2018/09/17 20:30:35 by baudiber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,8 @@ SRC			=	main.c \
 				multibrot.c \
 				multibrot3.c \
 				threads.c \
+				bresenham.c \
+				tree.c \
 				pixel.c
 
 CC 			=	gcc
