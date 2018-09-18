@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/29 01:09:26 by baudiber          #+#    #+#             */
-/*   Updated: 2018/09/12 15:16:53 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/09/18 16:59:53 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	draw(t_setup *stp)
 {
 	int		i;
 
-	reset_img(&stp->img);
+//	reset_img(&stp->img);
 	if (stp->rainbow)
 		stp->degrad = stp->frac.max_iter / 7;
 	i = 0;

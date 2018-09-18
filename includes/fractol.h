@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 22:53:30 by baudiber          #+#    #+#             */
-/*   Updated: 2018/09/17 22:05:10 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/09/18 19:04:21 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,17 @@ typedef struct s_frac	t_frac;
 typedef struct s_xy		t_xy;
 typedef struct s_pt		t_pt;
 typedef struct s_bres	t_bres;
+typedef struct s_tree	t_tree;
+
+
+struct			s_tree
+{
+	int		length;
+	int		brnchs;
+	int		scale;
+	int		y;
+	float	rot_scale;
+};
 
 struct			s_xy
 {
@@ -87,6 +98,7 @@ struct			s_setup
 	pthread_attr_t	attr;
 	t_frac			tmp[MAX_THREADS];
 	t_frac			frac;
+	t_tree			tree;
 	t_xy			prev;
 	void			*(*ft_frac)();
 	char			*av;
@@ -97,6 +109,7 @@ struct			s_setup
 	int				rainbow;
 	int				hud;
 	int				juliamouse;
+	int				f_tree;
 	int				*img;
 	int				bpx;
 	int				s_line;

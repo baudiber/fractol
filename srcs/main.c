@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 22:52:59 by baudiber          #+#    #+#             */
-/*   Updated: 2018/09/17 22:10:41 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/09/18 16:32:55 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ char	*which_frac(t_setup *stp, char *av, int ac)
 			stp->ft_frac = draw_bship;
 		else if (!ft_strcmp(av, "multibrot3"))
 			stp->ft_frac = draw_multibrot3;
+		else if (!ft_strcmp(av, "tree"))
+			return (av);
 	}
 	else if (ac == 3)
 		if (!ft_strcmp(av, "multibrot"))
@@ -54,7 +56,7 @@ void	ft_errors(int type)
 {
 	if (type == 1)
 		ft_putendl("usage : ./fractol <mandelbrot> / <julia> / <burningship> \
-/ <tricorn> / <multibrot3> / <multibrot> <1-100>");
+/ <tricorn> / <multibrot3> / <multibrot> <1-100> / <tree>");
 	else if (type == 2)
 		ft_putendl("multibrot number should be between 1 and 100");
 	exit(0);
