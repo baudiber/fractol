@@ -16,17 +16,19 @@
 
 void	zoom_in(t_setup *stp, int x, int y)
 {
-	stp->prev.x += x / 5;
-	stp->prev.y += y / 5;
-	stp->prev.x *= 1.2;
+	printf("x :%d\n", x - WIDTH / 2);
+	printf("y :%d\n", y - HEIGHT / 2);
+	stp->frac.zoom *= 1.3;
+	stp->prev.x += x - WIDTH / 2;
+	stp->prev.y += y - HEIGHT / 2;
+	stp->prev.x *= 1.3;
 	stp->prev.y *= 1.2;
-	stp->frac.zoom *= 1.2;
 }
 
 void	zoom_out(t_setup *stp, int x, int y)
 {
 	stp->prev.x -= x / 5;
-	stp->prev.y -= y / 5;
+	stp->prev.y -= y / 4;
 	stp->prev.x *= 0.8;
 	stp->prev.y *= 0.8;
 	stp->frac.zoom *= 0.8;
@@ -107,7 +109,10 @@ int		stp_key(int key, t_setup *stp)
 		else if (key == KEY_C)
 			stp->rainbow = (stp->rainbow) ? 0 : 1;
 		else if (key == KEY_R)
+		{
 			init(stp);
+			ft_putendl("reset!");
+		}
 		draw(stp);
 	}
 	return (0);

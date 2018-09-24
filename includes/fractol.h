@@ -12,8 +12,10 @@
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
-# define WIDTH 640
-# define HEIGHT 480
+//# define WIDTH 640
+//# define HEIGHT 480
+# define WIDTH 500
+# define HEIGHT 500
 # define MAX_THREADS 32
 # define SCROLL_DOWN 5
 # define SCROLL_UP 4
