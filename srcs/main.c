@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 22:52:59 by baudiber          #+#    #+#             */
-/*   Updated: 2018/09/18 16:32:55 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/09/26 21:12:54 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,19 @@ void	print_help(void)
 {
 	ft_putendl("~~~~~~~~~ HELP ~~~~~~~~~~");
 	ft_putendl("H key: turn off/on HUD");
+	ft_putendl("Esc: quit program");
+	ft_putendl("~~~~~~~~~FRACTALS~~~~~~~~");
 	ft_putendl("Scroll wheel & mouse 1&2: targeted zoom");
 	ft_putendl("Arrow keys: pan");
 	ft_putendl("Space: freeze julia");
 	ft_putendl("I/K keys: add iterations");
 	ft_putendl("C key: rainbow colors");
 	ft_putendl("R key: reset view");
-	ft_putendl("Esc: quit program");
-	ft_putendl("~~~~~~~~~~~~~~~~~~~~~~~~~");
+	ft_putendl("~~~~~~~~~~ TREE ~~~~~~~~~");
+	ft_putendl("R key: randomized tree");
+	ft_putendl("UP/DOWN keys: move tree");
+	ft_putendl("LEFT/RIGHT keys: change size");
+	ft_putendl("I/K keys: change depth (max:20)");
 }
 
 void	ft_errors(int type)

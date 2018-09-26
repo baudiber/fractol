@@ -6,16 +6,14 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 22:53:30 by baudiber          #+#    #+#             */
-/*   Updated: 2018/09/18 19:04:21 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/09/26 21:03:01 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
-//# define WIDTH 640
-//# define HEIGHT 480
-# define WIDTH 500
-# define HEIGHT 500
+# define WIDTH 640
+# define HEIGHT 480
 # define MAX_THREADS 32
 # define SCROLL_DOWN 5
 # define SCROLL_UP 4
@@ -52,8 +50,14 @@ struct			s_tree
 	int		length;
 	int		brnchs;
 	int		scale;
-	int		y;
+	int		pos_y;
+	double	rot;
+	double	depth;
 	float	rot_scale;
+	int		offset_x;
+	int		offset_y;
+	double	dir_x;
+	double	dir_y;
 };
 
 struct			s_xy
@@ -112,6 +116,7 @@ struct			s_setup
 	int				hud;
 	int				juliamouse;
 	int				f_tree;
+	int				treerand;
 	int				*img;
 	int				bpx;
 	int				s_line;

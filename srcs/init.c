@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 23:00:31 by baudiber          #+#    #+#             */
-/*   Updated: 2018/09/18 19:15:57 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/09/26 19:06:38 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	frac_init(t_setup *stp)
 void	init(t_setup *stp)
 {
 	stp->frac.max_iter = 155;
+	bzero(&stp->prev, sizeof(t_xy));
 	stp->juliamouse = 1;
 	stp->hud = 1;
 	stp->frac.zoom = 200;
@@ -56,7 +57,7 @@ void	init(t_setup *stp)
 		stp->tree.brnchs = 10;
 		stp->tree.scale = 5;
 		stp->tree.rot_scale = 0.90;	
-		stp->tree.y = 180;
+		stp->tree.pos_y = 180;
 	}
 }
 

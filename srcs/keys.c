@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 23:27:34 by baudiber          #+#    #+#             */
-/*   Updated: 2018/09/18 19:16:48 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/09/26 21:22:15 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,17 +67,21 @@ int		tree_keys(int key, t_setup *stp)
 	if (key == ECHAP)
 		exit(0);
 	else if (key == ARROW_DOWN)
-		stp->tree.y += 10;
+		stp->tree.pos_y += 10;
 	else if (key == ARROW_UP)
-		stp->tree.y -= 10;
+		stp->tree.pos_y -= 10;
 	else if (key == ARROW_RIGHT)
 		stp->tree.length += 10;
 	else if (key == ARROW_LEFT)
 		stp->tree.length -= 10;
-	else if (key == KEY_I)
+	else if (key == KEY_I && stp->tree.brnchs < 20)
 		stp->tree.brnchs += 2;
-	else if (key == KEY_K)
+	else if (key == KEY_K && stp->tree.brnchs > 0)
 		stp->tree.brnchs -= 2;
+	else if (key == KEY_R)
+		stp->treerand = (stp->treerand) ? 0 : 1;
+	else if (key == KEY_H)
+		stp->hud = (stp->hud) ? 0 : 1;
 	fractal_tree(stp);
 	return (0);
 }
@@ -88,15 +92,7 @@ int		stp_key(int key, t_setup *stp)
 		tree_keys(key, stp);
 	else
 	{
-		if (key == ARROW_UP)
-			stp->prev.y -= 10;
-		else if (key == ARROW_DOWN)
-			stp->prev.y += 10;
-		else if (key == ARROW_LEFT)
-			stp->prev.x -= 10;
-		else if (key == ARROW_RIGHT)
-			stp->prev.x += 10;
-		else if (key == SPACE)
+		if (key == SPACE)
 			stp->juliamouse = (stp->juliamouse) ? 0 : 1;	
 		else if (key == ECHAP)
 			exit(0);
@@ -109,10 +105,7 @@ int		stp_key(int key, t_setup *stp)
 		else if (key == KEY_C)
 			stp->rainbow = (stp->rainbow) ? 0 : 1;
 		else if (key == KEY_R)
-		{
 			init(stp);
-			ft_putendl("reset!");
-		}
 		draw(stp);
 	}
 	return (0);
