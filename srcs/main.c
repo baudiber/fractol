@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 22:52:59 by baudiber          #+#    #+#             */
-/*   Updated: 2018/09/26 21:12:54 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/09/28 19:37:49 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,10 @@ int		main(int ac, char **av)
 	if (ac == 3)
 		check_multibrot(av[2], &stp);
 	print_help();
+	stp.resi = 0;
+	init_res(&stp);
 	init_all(&stp);
+	init(&stp);
 	fractol(&stp);
 	return (0);
 }

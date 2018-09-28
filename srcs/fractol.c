@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 23:05:57 by baudiber          #+#    #+#             */
-/*   Updated: 2018/09/26 21:22:10 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/09/28 18:53:49 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int		repeat_k(int key, t_setup *stp)
 
 void	fractol(t_setup *stp)
 {
-	init(stp);
 	if (!stp->f_tree)
 		draw(stp);
 	else

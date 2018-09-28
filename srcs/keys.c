@@ -6,32 +6,32 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 23:27:34 by baudiber          #+#    #+#             */
-/*   Updated: 2018/09/26 21:22:15 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/09/28 19:14:28 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-//remove that
-#include <stdio.h>
 
 void	zoom_in(t_setup *stp, int x, int y)
 {
-	printf("x :%d\n", x - WIDTH / 2);
-	printf("y :%d\n", y - HEIGHT / 2);
-	stp->frac.zoom *= 1.3;
-	stp->prev.x += x - WIDTH / 2;
-	stp->prev.y += y - HEIGHT / 2;
-	stp->prev.x *= 1.3;
+	stp->prev.x += x - stp->res[stp->resi][0] / 2;
+	stp->prev.y += y - stp->res[stp->resi][1] / 2;
+	stp->frac.zoom *= 1.2;
+	stp->prev.x *= 1.2;
 	stp->prev.y *= 1.2;
-}
+	stp->prev.x += stp->res[stp->resi][0] / 10; 
+	stp->prev.y += stp->res[stp->resi][1] / 10; 
+} 
 
 void	zoom_out(t_setup *stp, int x, int y)
 {
-	stp->prev.x -= x / 5;
-	stp->prev.y -= y / 4;
+	stp->prev.x += x - stp->res[stp->resi][0] / 2;
+	stp->prev.y += y - stp->res[stp->resi][1] / 2;
 	stp->prev.x *= 0.8;
 	stp->prev.y *= 0.8;
 	stp->frac.zoom *= 0.8;
+	stp->prev.x -= stp->res[stp->resi][0] / 10; 
+	stp->prev.y -= stp->res[stp->resi][1] / 10; 
 }
 
 int		mouse(int button, int x, int y, t_setup *stp)
@@ -52,10 +52,10 @@ int		mouse(int button, int x, int y, t_setup *stp)
 
 int		julia_mouse(int x, int y, t_setup *stp)
 {
-	if (!stp->juliamouse || y < 3 || x < 0 || x > WIDTH || y > HEIGHT)
+	if (!stp->juliamouse || y < 3 || x < 0 || x > stp->res[stp->resi][0] || y > stp->res[stp->resi][1])
 		return (0);
-	stp->frac.c_r = x * (3.0 / WIDTH) - 1.5;
-	stp->frac.c_i = y * (3.0 / HEIGHT) - 1.5;
+	stp->frac.c_r = x * (3.0 / stp->res[stp->resi][0]) - 1.5;
+	stp->frac.c_i = y * (3.0 / stp->res[stp->resi][1]) - 1.5;
 	draw(stp);
 	return (0);
 }
@@ -70,9 +70,9 @@ int		tree_keys(int key, t_setup *stp)
 		stp->tree.pos_y += 10;
 	else if (key == ARROW_UP)
 		stp->tree.pos_y -= 10;
-	else if (key == ARROW_RIGHT)
+	else if (key == ARROW_RIGHT && stp->tree.length < 200)
 		stp->tree.length += 10;
-	else if (key == ARROW_LEFT)
+	else if (key == ARROW_LEFT && stp->tree.length > -200)
 		stp->tree.length -= 10;
 	else if (key == KEY_I && stp->tree.brnchs < 20)
 		stp->tree.brnchs += 2;
@@ -94,6 +94,8 @@ int		stp_key(int key, t_setup *stp)
 	{
 		if (key == SPACE)
 			stp->juliamouse = (stp->juliamouse) ? 0 : 1;	
+		else if (key == KEY_J)
+			change_res(stp);
 		else if (key == ECHAP)
 			exit(0);
 		else if (key == KEY_I && stp->frac.max_iter <= 1000)
