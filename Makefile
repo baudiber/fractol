@@ -16,7 +16,7 @@ SRC_DIR		=	./srcs
 INC_DIR		=	./includes
 OBJ_DIR		=	./obj
 LIB_DIR		=	./libft
-MLX_DIR		=	./minilibx/minilibx_mac
+MLX_DIR		=	./minilibx_opengl
 
 SRC			=	main.c \
 				init.c \
@@ -33,7 +33,8 @@ SRC			=	main.c \
 				bresenham.c \
 				tree.c \
 				pixel.c \
-				res.c
+				res.c \
+				gl_main.c
 
 CC 			=	gcc
 FLAGS		=	-Wall -Werror -Wextra -pthread
@@ -42,11 +43,12 @@ HEADER_H	=	$(INC_DIR)/$(NAME).h
 OBJ 		=	$(addprefix $(OBJ_DIR)/,$(SRC:.c=.o))
 MFLAGS		=	-lm -lmlx -framework OpenGL -framework Appkit
 LIBS 		=	-L $(LIB_DIR) -lft -L $(MLX_DIR) $(MFLAGS)
+GL_FLAGS	=	-lGLEW
 
 all: $(NAME)
 
 $(NAME): obj_mkdir lib $(HEADER_H) $(OBJ) 
-	@$(CC)  $(OBJ) -o $(NAME) $(LIBS)
+	@$(CC)  $(OBJ) -o $(NAME) $(LIBS) $(GL_FLAGS)
 	@echo "$(NAME) binary \033[32mcreated\033[0m."
 
 $(OBJ_DIR)/%.o:		$(SRC_DIR)/%.c $(HEADER_H)
@@ -74,9 +76,9 @@ fclean: clean
 fast:
 	@$(MAKE)	-j
 
-run:
-	@$(MAKE) -j
-	@./fractol
+gpu:
+	@$(MAKE)	-j
+	@./fractol mandelbrot GPU
 
 re: 
 	@$(MAKE) fclean

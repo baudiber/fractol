@@ -32,11 +32,14 @@
 # define ARROW_LEFT 123
 # define ARROW_RIGHT 124
 
-# include "../minilibx/minilibx_mac/mlx.h"
+# include "../minilibx_opengl/mlx.h"
+# include "../minilibx_opengl/mlx_opengl.h"
 # include <stdio.h>
 # include "../libft/libft.h"
 # include <math.h>
+# include <GL/glew.h>
 # include <pthread.h>
+# include <stdlib.h>
 
 typedef struct s_setup	t_setup;
 typedef struct s_frac	t_frac;
@@ -44,6 +47,7 @@ typedef struct s_xy		t_xy;
 typedef struct s_pt		t_pt;
 typedef struct s_bres	t_bres;
 typedef struct s_tree	t_tree;
+typedef struct s_gl		t_gl;
 
 
 struct			s_tree
@@ -99,10 +103,17 @@ struct				s_bres
 	int				yinc;
 };
 
+struct				s_gl
+{
+	GLuint			buffer;
+	GLuint			texture;
+	GLenum			buffers[1];
+};
+
 struct			s_setup
 {
 	pthread_t		tids[MAX_THREADS];
-	pthread_attr_t	attr;
+	t_gl			gl;
 	t_frac			tmp[MAX_THREADS];
 	t_frac			frac;
 	t_tree			tree;
@@ -121,6 +132,7 @@ struct			s_setup
 	int				*img;
 	int				bpx;
 	int				s_line;
+	int				gpu;
 	int				ed;
 	int				n;
 	int				resi;
@@ -149,5 +161,6 @@ void			ft_bresenham(t_pt p1, t_pt p2, t_bres *bres, int **img);
 void			fractal_tree(t_setup *stp);
 void			init_res(t_setup *stp);
 void			change_res(t_setup *stp);
+void			gl_main(t_setup *stp);
 
 #endif
