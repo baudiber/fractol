@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 22:53:30 by baudiber          #+#    #+#             */
-/*   Updated: 2018/09/28 19:40:26 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/10/08 16:43:46 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@
 # include <stdio.h>
 # include "../libft/libft.h"
 # include <math.h>
-# include <GL/glew.h>
+# include <../glew/include/GL/glew.h>
 # include <pthread.h>
 # include <stdlib.h>
 
