@@ -105,8 +105,9 @@ struct				s_bres
 
 struct				s_gl
 {
-	GLuint			buffer;
-	GLuint			texture;
+	GLuint			render_hdl;
+	GLuint			compute_hdl;
+	GLuint			tex_hdl;
 	GLenum			buffers[1];
 };
 
