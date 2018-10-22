@@ -6,11 +6,16 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 22:35:28 by baudiber          #+#    #+#             */
-/*   Updated: 2018/09/29 00:00:09 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/10/22 23:07:29 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+/*
+** the actual algorithm for each pixel of the thread's \
+** assigned pixels
+*/
 
 void	mandel(t_xy *xy, t_setup *stp, int tid)
 {
@@ -36,6 +41,12 @@ void	mandel(t_xy *xy, t_setup *stp, int tid)
 	else
 		set_pixel(i, stp, tid, xy);
 }
+
+/*
+** the mandelbrot fractal
+** part one is finding the thread id
+** part two is setting where we start/finish on the screen
+*/
 
 void	*draw_mandelbrot(void *arg)
 {

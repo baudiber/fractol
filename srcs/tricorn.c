@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 15:22:44 by baudiber          #+#    #+#             */
-/*   Updated: 2018/09/28 19:28:05 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/10/23 00:04:04 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ void	tricorn(t_xy *xy, t_setup *stp, int tid)
 	else
 		set_pixel(i, stp, tid, xy);
 }
+
+/*
+** Tricorn fractal
+*/
 
 void	*draw_tricorn(void *arg)
 {

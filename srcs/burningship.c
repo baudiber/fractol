@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 19:34:14 by baudiber          #+#    #+#             */
-/*   Updated: 2018/09/28 19:15:42 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/10/22 22:50:57 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ void	bship(t_xy *xy, t_setup *stp, int tid)
 	else
 		set_pixel(i, stp, tid, xy);
 }
+
+/*
+** Burning ship fractal
+*/
 
 void	*draw_bship(void *arg)
 {

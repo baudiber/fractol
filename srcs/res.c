@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/28 17:24:19 by baudiber          #+#    #+#             */
-/*   Updated: 2018/09/28 19:41:39 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/10/22 23:16:51 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,21 @@ void	init_res(t_setup *stp)
 	stp->res[4][0] = 2560;
 	stp->res[4][1] = 1420;
 	stp->w = 640;
-}	
+}
+
+/*
+** closes window and image and reinitialize windows to a new resolution
+*/
 
 void	change_res(t_setup *stp)
 {
 	if (stp->resi != 4)
 		stp->resi++;
-	else 
+	else
 		stp->resi = 0;
 	stp->w = stp->res[stp->resi][0];
 	mlx_destroy_image(stp->mlx, stp->img_ptr);
 	mlx_destroy_window(stp->mlx, stp->win);
-	init_all(stp);
+	init_mlx(stp);
 	fractol(stp);
 }

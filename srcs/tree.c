@@ -6,16 +6,15 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/17 19:53:36 by baudiber          #+#    #+#             */
-/*   Updated: 2018/09/28 18:02:23 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/10/22 23:00:23 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-double rand_fl(void)
-{
-	return((double)rand() / (double)RAND_MAX);
-}
+/*
+** redraws background in white
+*/
 
 void	draw_bg(int **img)
 {
@@ -47,12 +46,19 @@ t_tree	next_tree(t_tree *prevtree, int dir, t_setup *stp)
 	return (t1);
 }
 
+/*
+** *recursion alert*
+** tree algorithm
+**		tree algorithm
+** 			tree algorithm
+*/
+
 void	draw_tree(t_tree *prevtree, t_setup *stp)
 {
-	t_pt p1;
-	t_pt p2;
-	t_tree t1;
-	t_tree t2;
+	t_pt	p1;
+	t_pt	p2;
+	t_tree	t1;
+	t_tree	t2;
 	t_bres	bres;
 
 	p1.x = prevtree->offset_x;
@@ -60,15 +66,19 @@ void	draw_tree(t_tree *prevtree, t_setup *stp)
 	p2.x = (int)(prevtree->offset_x + prevtree->dir_x * prevtree->length);
 	p2.y = (int)(prevtree->offset_y + prevtree->dir_y * prevtree->length);
 	p2.color = 0;
-	ft_bresenham(p1, p2, &bres, &stp->img);	
+	ft_bresenham(p1, p2, &bres, &stp->img);
 	if (prevtree->depth > 0)
 	{
 		t1 = next_tree(prevtree, 1, stp);
 		t2 = next_tree(prevtree, 0, stp);
-		draw_tree(&t1, stp); 
-		draw_tree(&t2, stp); 
+		draw_tree(&t1, stp);
+		draw_tree(&t2, stp);
 	}
 }
+
+/*
+** display tree HUD
+*/
 
 void	display_info_tree(t_setup *stp)
 {
@@ -83,6 +93,10 @@ void	display_info_tree(t_setup *stp)
 		(tmp = ft_itoa(stp->tree.brnchs)));
 	free(tmp);
 }
+
+/*
+** Tree fractal
+*/
 
 void	fractal_tree(t_setup *stp)
 {

@@ -6,11 +6,15 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 19:55:11 by baudiber          #+#    #+#             */
-/*   Updated: 2018/09/28 23:35:47 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/10/23 00:05:02 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+/*
+** this function sets the color to a nice red / orange warm range
+*/
 
 void	set_pixel(int i, t_setup *stp, int tid, t_xy *xy)
 {
@@ -25,6 +29,13 @@ void	set_pixel(int i, t_setup *stp, int tid, t_xy *xy)
 		stp->img[(int)(xy->x - stp->prev.x) + (int)(xy->y - stp->prev.y) \
 			* stp->w] = ((i * 0xFF / stp->tmp[tid].max_iter + 30) << 16);
 }
+
+/*
+** degrad is the number max of iteration divided by 7
+** i is the iteration value
+** this functions changes the color of the pixel according the value of i
+** in a rainbow manner
+*/
 
 void	set_rainbow(int i, t_setup *stp, int tid, t_xy *xy)
 {

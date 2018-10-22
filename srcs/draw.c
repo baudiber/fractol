@@ -6,11 +6,15 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/29 01:09:26 by baudiber          #+#    #+#             */
-/*   Updated: 2018/09/28 23:30:58 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/10/23 00:25:24 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+/*
+** HUD display (with free)
+*/
 
 void	info(t_setup *stp)
 {
@@ -54,6 +58,26 @@ void	display_res(t_setup *stp)
 	free(tmp);
 }
 
+void	display_crosshair(t_setup *stp)
+{
+	int		i;
+
+	i = -4;
+	stp->img[(stp->res[stp->resi][1] / 2) * stp->res[stp->resi][0] \
+		+ stp->res[stp->resi][0] / 2] = 0xFFFFFF;
+	while (++i < 4)
+	{
+		stp->img[(stp->res[stp->resi][1] / 2) * stp->res[stp->resi][0] \
+			+ stp->res[stp->resi][0] / 2 + i] = 0xFFFFFF;
+		stp->img[(stp->res[stp->resi][1] / 2 + i) * stp->res[stp->resi][0] \
+			+ stp->res[stp->resi][0] / 2] = 0xFFFFFF;
+	}
+}
+
+/*
+** main drawing function that creates and joins the drawing threads
+*/
+
 void	draw(t_setup *stp)
 {
 	int		i;
@@ -70,6 +94,8 @@ void	draw(t_setup *stp)
 	i = 0;
 	while (i < MAX_THREADS)
 		pthread_join(stp->tids[i++], NULL);
+	if (stp->crosshair)
+		display_crosshair(stp);
 	mlx_put_image_to_window(stp->img, stp->win, stp->img_ptr, 0, 0);
 	if (stp->hud)
 	{

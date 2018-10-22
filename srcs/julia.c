@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/06 22:31:47 by baudiber          #+#    #+#             */
-/*   Updated: 2018/09/28 19:17:19 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/10/22 22:41:44 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ void	julia(t_xy *xy, t_setup *stp, int tid)
 	else
 		set_pixel(i, stp, tid, xy);
 }
+
+/*
+** Julia fractal
+*/
 
 void	*draw_julia(void *arg)
 {

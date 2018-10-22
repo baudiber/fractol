@@ -6,11 +6,15 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/04/25 18:25:28 by baudiber          #+#    #+#             */
-/*   Updated: 2018/09/28 18:01:52 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/10/22 22:35:39 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+/*
+** this function creates a struct t_pt with doubles x and y
+*/
 
 t_pt	pt(double x, double y)
 {
@@ -20,6 +24,10 @@ t_pt	pt(double x, double y)
 	pt.y = y;
 	return (pt);
 }
+
+/*
+** checks if the coordinates are valid (not outside the window)
+*/
 
 void	check_and_draw(int **img, t_pt pt, unsigned int color)
 {
@@ -65,6 +73,10 @@ void	ft_bresenham1(t_bres *bres, int **img, unsigned int color)
 	}
 }
 
+/*
+** algorithm used to draw a the straightest line between two points
+*/
+
 void	ft_bresenham(t_pt p1, t_pt p2, t_bres *bres, int **img)
 {
 	bres->x = p1.x;
@@ -73,9 +85,8 @@ void	ft_bresenham(t_pt p1, t_pt p2, t_bres *bres, int **img)
 	bres->dy = p2.y - p1.y;
 	bres->xinc = (bres->dx > 0) ? 1 : -1;
 	bres->yinc = (bres->dy > 0) ? 1 : -1;
-	//abs not allowed
-	bres->dx = abs(bres->dx);
-	bres->dy = abs(bres->dy);
+	bres->dx = ft_abs(bres->dx);
+	bres->dy = ft_abs(bres->dy);
 	bres->i = 1;
 	check_and_draw(img, pt(bres->x + WIDTH / 2, bres->y + HEIGHT / 2), \
 			p2.color);

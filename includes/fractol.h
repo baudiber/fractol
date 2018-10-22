@@ -6,7 +6,7 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/11 22:53:30 by baudiber          #+#    #+#             */
-/*   Updated: 2018/09/28 19:40:26 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/10/23 00:47:07 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # define ECHAP 53
 # define SPACE 49
 # define KEY_I 34
+# define KEY_X 7
 # define KEY_K 40
 # define KEY_W 13
 # define KEY_S 1
@@ -33,7 +34,6 @@
 # define ARROW_RIGHT 124
 
 # include "../minilibx/minilibx_mac/mlx.h"
-# include <stdio.h>
 # include "../libft/libft.h"
 # include <math.h>
 # include <pthread.h>
@@ -44,7 +44,6 @@ typedef struct s_xy		t_xy;
 typedef struct s_pt		t_pt;
 typedef struct s_bres	t_bres;
 typedef struct s_tree	t_tree;
-
 
 struct			s_tree
 {
@@ -80,14 +79,14 @@ struct			s_frac
 	double				z_i;
 };
 
-struct				s_pt
+struct			s_pt
 {
 	float			x;
 	float			y;
 	unsigned int	color;
 };
 
-struct				s_bres
+struct			s_bres
 {
 	int				cumul;
 	int				i;
@@ -98,6 +97,10 @@ struct				s_bres
 	int				xinc;
 	int				yinc;
 };
+
+/*
+** main struct
+*/
 
 struct			s_setup
 {
@@ -118,6 +121,7 @@ struct			s_setup
 	int				juliamouse;
 	int				f_tree;
 	int				treerand;
+	int				crosshair;
 	int				*img;
 	int				bpx;
 	int				s_line;
@@ -128,15 +132,33 @@ struct			s_setup
 	int				w;
 };
 
-void			init_all(t_setup *stp);
+/*
+** init functions
+*/
+
+void			init_mlx(t_setup *stp);
+void			init_var(t_setup *stp);
+void			init_res(t_setup *stp);
 void			fractol(t_setup *stp);
-void			display_splash(t_setup *stp);
-int				stp_key(int key, t_setup *stp);
+void			change_res(t_setup *stp);
+
+/*
+** events (keyboard and mouse)
+*/
+
+int				frac_key(int key, t_setup *stp);
 int				mouse(int button, int x, int y, t_setup *stp);
 int				julia_mouse(int x, int y, t_setup *stp);
+int				repeat_k(int key, t_setup *stp);
+
+/*
+** drawing functions
+*/
+
 void			draw(t_setup *stp);
-void			init(t_setup *stp);
 void			*draw_julia(void *arg);
+void			*draw_juliargh(void *arg);
+void			*draw_juliaiaia(void *arg);
 void			*draw_mandelbrot(void *arg);
 void			*draw_bship(void *arg);
 void			*draw_tricorn(void *arg);
@@ -144,10 +166,20 @@ void			*draw_multibrot3(void *arg);
 void			*draw_multibrot(void *arg);
 void			set_pixel(int i, t_setup *stp, int tid, t_xy *xy);
 void			set_rainbow(int i, t_setup *stp, int tid, t_xy *xy);
-int				find_thread(t_setup *stp);
 void			ft_bresenham(t_pt p1, t_pt p2, t_bres *bres, int **img);
 void			fractal_tree(t_setup *stp);
-void			init_res(t_setup *stp);
-void			change_res(t_setup *stp);
+
+/*
+** multithreading
+*/
+
+int				find_thread(t_setup *stp);
+
+/*
+** math func
+*/
+
+int				ft_abs(int val);
+double			rand_fl(void);
 
 #endif

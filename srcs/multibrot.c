@@ -6,11 +6,16 @@
 /*   By: baudiber <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/12 15:22:08 by baudiber          #+#    #+#             */
-/*   Updated: 2018/09/28 19:18:47 by baudiber         ###   ########.fr       */
+/*   Updated: 2018/10/22 23:11:11 by baudiber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+/*
+** n was parsed as an argument of the program
+** this multibrot changes depending on n
+*/
 
 void	multibrot(t_xy *xy, t_setup *stp, int tid)
 {
@@ -23,7 +28,7 @@ void	multibrot(t_xy *xy, t_setup *stp, int tid)
 	rsqr = 0;
 	isqr = 0;
 	i = 0;
-	while (rsqr + isqr < 8 && i++ < stp->tmp[tid].max_iter)
+	while (rsqr + isqr < 4 && i++ < stp->tmp[tid].max_iter)
 	{
 		stp->tmp[tid].tmp = pow((rsqr + isqr), (n / 2)) \
 			* cos(n * atan2(stp->tmp[tid].z_i, stp->tmp[tid].z_r)) \
@@ -40,6 +45,10 @@ void	multibrot(t_xy *xy, t_setup *stp, int tid)
 	else
 		set_pixel(i, stp, tid, xy);
 }
+
+/*
+** multibrot fractal function
+*/
 
 void	*draw_multibrot(void *arg)
 {

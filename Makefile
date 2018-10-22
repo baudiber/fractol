@@ -6,7 +6,7 @@
 #    By: baudiber <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/29 00:57:22 by baudiber          #+#    #+#              #
-#    Updated: 2018/09/28 17:42:16 by baudiber         ###   ########.fr        #
+#    Updated: 2018/10/23 00:46:31 by baudiber         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ SRC			=	main.c \
 				draw.c \
 				mandelbrot.c \
 				julia.c \
+				julia2.c \
+				julia3.c \
 				burningship.c \
 				tricorn.c \
 				multibrot.c \
@@ -33,6 +35,8 @@ SRC			=	main.c \
 				bresenham.c \
 				tree.c \
 				pixel.c \
+				mouse.c \
+				math.c \
 				res.c
 
 CC 			=	gcc
