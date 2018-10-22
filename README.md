@@ -10,11 +10,8 @@ Multibrot and Tree among another not so famous ones I got by tweaking the others
 To see usage : ./fractol
 
 #KEY BINDS
-~~~~~~~~~ HELP ~~~~~~~~~~ 
 H key: turn off/on HUD 
 Esc: quit program
-
-~~~~~~~~~FRACTALS~~~~~~~~ 
 Scroll wheel & mouse 1&2: targeted zoom 
 Arrow keys: pan 
 Space: freeze julia 
@@ -23,7 +20,7 @@ C key: rainbow colors
 R key: reset view 
 X key: crosshair
 
-~~~~~~~~~~ TREE ~~~~~~~~~ 
+#Tree Fractal Binds
 R key: randomized tree 
 UP/DOWN keys: move tree 
 LEFT/RIGHT keys: change size (max:200) 
