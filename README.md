@@ -17,7 +17,7 @@ Space: freeze julia \
 I/K keys: add iterations \
 C key: rainbow colors \
 R key: reset view \
-X key: crosshair \
+X key: crosshair 
 
 #Tree Fractal Binds \
 R key: randomized tree \
